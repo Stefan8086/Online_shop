@@ -1,0 +1,142 @@
+.body_bg {
+  background-image: url(../images/body_bg.jpg);
+    background-size: cover;
+  }
+  
+  .service .heading_container {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 25px;
+  }
+  
+  .service .box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin: 15px 0;
+    width: 85%;
+  }
+  
+  .service .box h4 {
+    margin-top: 5px;
+  }
+  
+  .service .box a {
+    padding: 6px 25px;
+    border: 1px solid #e93f1a;
+    color: #e93f1a;
+    text-transform: uppercase;
+  }
+  .service .box {
+    width: 100%;
+}
+
+.contact .contact_bg {
+  background-color: #ffffff;
+}
+
+.contact .heading_container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 45px;
+}
+
+.contact .contact_form {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.contact .contact_form .top_input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.contact .contact_form .top_input input {
+  width: 48%;
+}
+
+.contact .contact_form input {
+  width: 100%;
+  margin: 15px 0;
+  height: 50px;
+  padding-left: 15px;
+  border: none;
+  outline: none;
+  background-color: rgb(90, 90, 228);
+  color: #ffffff;
+}
+
+.contact .contact_form input.message_input {
+  padding: 25px 0 90px 15px;
+}
+
+.contact .contact_form input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact .contact_form input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact .contact_form input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact .contact_form input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact .contact_form button {
+  display: inline-block;
+  padding: 8px 35px;
+  background-color: rgb(90, 90, 228);
+  color: #ffffff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 45px;
+}
+
+.contact .contact_form button:hover {
+  background-color: transparent;
+  border-color: rgb(90, 90, 228);
+  color: rgb(90, 90, 228)ue;
+}
+
+.contact .img-box img {
+  width: 100%;
+}
+
+.footer {
+  font-weight: 500;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
+  background-color: rgb(90, 90, 228);
+}
+
+.footer p {
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+}
+
+.footer a {
+  color: #ffffff;
+}
