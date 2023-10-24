@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('Confirmpassword');
             $table->string('activation_token')->nullable();
             $table->string('register_ip')->nullable();
             $table->boolean('active')->default(false);

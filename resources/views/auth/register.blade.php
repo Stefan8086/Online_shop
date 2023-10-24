@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+@section('content')
 @include('category.header')
 <body>
   @include('category.navbar')
@@ -57,5 +57,4 @@
            
         </div>
       </section>
-</body>
-</html>
+      @endsection
