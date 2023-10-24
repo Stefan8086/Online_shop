@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>   
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #f9f2e4;">
     <div class="container tex-center">
 
@@ -33,12 +37,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                 </li>
+             
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                </li>
+
             </ul>
         </div>
     </div>
-
-
 </nav>
+
+</body>
+</html>

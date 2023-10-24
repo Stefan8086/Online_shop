@@ -42,7 +42,7 @@ class userSignup extends Mailable
             view: 'emails.userSignup',
             with: [
                 'firstname' => $this->user->firstname,
-                 'activation_token' => $this->activation_token
+                'activation_token' => $this->activation_token
                 ]);
     }
 
