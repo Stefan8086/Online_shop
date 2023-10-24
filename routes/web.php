@@ -21,11 +21,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 // Login
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
-Route::post('/login' , [App\Http\Controllers\Auth\LoginController::class,'loginUser'])->name('login-user');
+Route::post('/login' , [App\Http\Controllers\Auth\LoginController::class,'loginUser'])->name('login.user');
 
 // Register
 Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
-Route::post('/register' , [App\Http\Controllers\Auth\RegisterController::class,'registerUser'])->name('register-user');
+Route::post('/register' , [App\Http\Controllers\Auth\RegisterController::class,'registerUser'])->name('register.user');
 
 // Logout
 Route::get('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
@@ -38,7 +38,7 @@ Route::get('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logou
 
  // mail send and verify
 //Route::get('/active/{token}', [App\Http\Controllers\RegisterController::class, 'userActive'])->name('activie');
-Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
+//Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
     
 // Define Custom Verification Routes
 Route::get('/email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'notice'])->name('verification.notice');

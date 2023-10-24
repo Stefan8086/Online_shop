@@ -1,5 +1,4 @@
-@extends('layout')
-@section('content')
+
 @include('category.header')
 <body>
   @include('category.navbar')
@@ -12,7 +11,7 @@
           </div>
        <div style="display:flex;
         justify-content: center;">
-          <form action="{{ route('register-user') }}" method="POST" class="form">
+          <form action="{{ route('register.user') }}" method="POST" class="form">
             @if (Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>
             @endif
@@ -57,4 +56,4 @@
            
         </div>
       </section>
-      @endsection
+

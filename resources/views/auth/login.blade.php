@@ -1,5 +1,5 @@
-@extends('layout')
-@section('content')
+
+
 @include('category.header')
 <body>
 <!--Navbar link -->
@@ -40,10 +40,10 @@
     <div class="valid-feedback">Valid.</div>
     <div class="invalid-feedback">Check this checkbox to continue.</div>
   </div>
-    <a class="btn btn-primary" href="{{ route('dashboard') }}">Login</a>
+    <a class="btn btn-primary" href="#">Login</a>
     <br>
     <br>
-    <a href="{{ route('register') }}">New User Register Hier</a>
+    <a href="{{ route('register.user') }}">New User Register Hier</a>
 </form>
 </div>
 

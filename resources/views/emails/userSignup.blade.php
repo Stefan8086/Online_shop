@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Email Verify</title>
+    <title>Email Send</title>
 </head>
 <body>
     <h1>Hallo . {{ $firstname }}</h1>

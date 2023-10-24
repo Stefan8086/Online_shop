@@ -37,11 +37,13 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users' ,
             'password' => 'required|confirmed|min:5|max:12' 
         ]);
-          
+
+        //if validator has ben faild
         if ($validator->fails()) {
             return redirect('register')
                         ->withErrors($validator)
                         ->withInput();
+         //if validator has ben faild
         }
        $user = new User([
         'firstname' => $request->firstname ,

@@ -2,8 +2,6 @@
 
 namespace App\Mail;
 
-
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,22 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
-
-
-
-
-class userSignup extends Mailable
+class verifyActive extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
-
-    public function __construct(User $user)
+    /**
+     * Create a new message instance.
+     */
+    public function __construct()
     {
-        $this->user = $user;
-        $this->activation_token = $user->activation_token;
-    
+        //
     }
 
     /**
@@ -35,7 +27,7 @@ class userSignup extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Signup',
+            subject: 'Verify Active',
         );
     }
 
@@ -45,11 +37,8 @@ class userSignup extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.userSignup',
-            with: [
-                'firstname' => $this->user->firstname,
-                'activation_token' => $this->activation_token,
-                ]);
+            view: 'view.name',
+        );
     }
 
     /**
