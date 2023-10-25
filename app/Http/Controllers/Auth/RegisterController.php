@@ -66,7 +66,7 @@ class RegisterController extends Controller
       }
     
 
-        // user active with usersignup email
+        // user active with signup email
         public function userActive($token)
         {
 
@@ -83,14 +83,14 @@ class RegisterController extends Controller
             $user->activation_token= '';
             $user->save();
 
-            FacadesAuth::login($user);
-            return redirect('dashboard');
+            Mail::to($user->email)->send(new verifyActive($user));
+
+          
+            return redirect('login');
           } 
             return back()->with('success' , 'user has ben active'); 
        
-        
-
-     }
+      }
 
    }
 

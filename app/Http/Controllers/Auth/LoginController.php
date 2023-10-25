@@ -42,18 +42,17 @@ class LoginController extends Controller
 
         $cerdinentals = request(['email','password']);
         if(!Auth::attempt($cerdinentals)){
-            return response()->json([
-                'message' => 'unauthorized'
-           ]);
+            return redirect('login')
+                ->withErrors(['message' => 'unauthorized']);
         }
 
         $user = Auth::user();
          
          //if user email has not verified return this message
-         if($user->hasVerifiedEmail()){
-            return response()->json([
-                'message' => 'Email has not verified'
-       ]);
+         if(!$user->hasVerifiedEmail()){
+            return redirect('login')
+                ->withErrors(['message' => 'Email has not verified']);
+       
 
          }
 

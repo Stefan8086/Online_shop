@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -9,16 +10,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
 class verifyActive extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    protected $user;
+
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
+        
+    
     }
 
     /**
@@ -37,9 +40,12 @@ class verifyActive extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
-        );
-    }
+                view: 'emails.userActive',
+                with: [
+                    'firstname' => $this->user->firstname,
+                    ]);
+        }
+        
 
     /**
      * Get the attachments for the message.

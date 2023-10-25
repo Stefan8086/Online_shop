@@ -9,7 +9,6 @@
 
     <p>Your email is activated.</p>
 
-    <a href="{{ route('active', $token) }}">Verify Email</a>
 
     <p>Thank you for Active Email</p>
 

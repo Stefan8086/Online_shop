@@ -37,10 +37,7 @@ Route::get('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logou
 //Route::get('/admin' , [App\Http\Controllers\Administrator\AdminController::class,'index'])->name('admin');
 
  // mail send and verify
-//Route::get('/active/{token}', [App\Http\Controllers\RegisterController::class, 'userActive'])->name('activie');
+ Route::get('/active/{token}', [App\Http\Controllers\RegisterController::class, 'userActive'])->name('activie');
+
 //Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
     
-// Define Custom Verification Routes
-Route::get('/email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'notice'])->name('verification.notice');
-Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('/email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->name('verification.resend');
