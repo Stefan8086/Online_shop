@@ -17,6 +17,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Session as FacadesSession;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -31,60 +32,27 @@ class LoginController extends Controller
 
     public function loginUser(Request $request)
     { 
-        $validator = Validator::make($request->all(), [
+        $request -> validate([
             'email' => 'required|email' ,
             'password' => 'required' 
         ]);
         
-        if ($validator->fails()) {
-            return redirect('login')
-                        ->withErrors($validator)
-                        ->withInput();
+        $credentials = $request->only('email','password');
+        if(Auth::attempt($credentials)) {
+            return redirect()->intended('/')
+                ->withSuccess('Signed in');
+        }
+           
         }
 
-        $cerdinentals = $request->only('email','password');
-        if(!Auth::attempt($cerdinentals)){
-            return redirect('login')
-                ->withErrors(['message' => 'unauthorized']);
-        }
-
-        $user = Auth::user();
-         
-         //if user email has not verified return this message
-         if(!$user->hasVerifiedEmail()){
-            return redirect('login')
-                ->withErrors(['message' => 'Email has not verified']);
-       
-
-         }
-
-         $tokenResult = $user->createToken('Login Token');
-         $token = $tokenResult->token;
-
-         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer' ,
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeLocalString(),
-
-            ]);
-    }
-
+    
     public function logout()
     {
+        session::flush();
         Auth::logout();
+
+
         return redirect('/login');
     }
-
-    public function dashboard(): RedirectResponse
-    {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
-    }
-    
 
  }

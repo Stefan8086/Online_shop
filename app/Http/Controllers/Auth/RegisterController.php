@@ -86,7 +86,7 @@ class RegisterController extends Controller
             Mail::to($user->email)->send(new verifyActive($user));
 
           
-            return redirect(route('login'))->with('success' , 'user has ben active');
+            return redirect(route('login'))->withSuccess('User has ben active');
           } 
        
       }
