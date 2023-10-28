@@ -4,7 +4,7 @@
 
 <body>
   
-@include('category.navbar')
+
 <section class="service bg-light mt-5" >
       <div class="container">
           <div class="bg-light p-5 text-center">

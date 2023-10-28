@@ -74,21 +74,20 @@ class RegisterController extends Controller
 
           if(!$user){
 
-            return redirect('Login')->with('This activation token is invalid .');
+            return redirect(route('login'))->with('error','This activation token is invalid .');
         
-          }else {
+          } else {
 
             $user->active = true;
-            $user->email_verified_at = Carbon::new();
+            $user->email_verified_at = Carbon::now();
             $user->activation_token= '';
             $user->save();
 
             Mail::to($user->email)->send(new verifyActive($user));
 
           
-            return redirect('login');
+            return redirect(route('login'))->with('success' , 'user has ben active');
           } 
-            return back()->with('success' , 'user has ben active'); 
        
       }
 

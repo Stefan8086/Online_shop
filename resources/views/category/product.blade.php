@@ -3,7 +3,7 @@
   @include('category.header')
 <body>
   
-@include('category.navbar')
+
 <!-- Product plans -->
 <section id="product" class="bg-light mt-5">
     <div class="container-lg">

@@ -2,7 +2,7 @@
 <html lang="en">
 @include('category.header')
 <body>
-@include('category.navbar')
+
 <section id="education" class="bg-light mt-auto">
     <div class="container-md">
       <div class="text-center">

@@ -16,7 +16,10 @@ use Mail;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
+
+
 
 class LoginController extends Controller
 {
@@ -27,20 +30,19 @@ class LoginController extends Controller
     }
 
     public function loginUser(Request $request)
-    {
+    { 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email' ,
             'password' => 'required' 
         ]);
-
+        
         if ($validator->fails()) {
             return redirect('login')
                         ->withErrors($validator)
                         ->withInput();
         }
-        return back()->withErrors(['email' => 'Your provided credentials do not match in our records.'])->onlyInput('email');
 
-        $cerdinentals = request(['email','password']);
+        $cerdinentals = $request->only('email','password');
         if(!Auth::attempt($cerdinentals)){
             return redirect('login')
                 ->withErrors(['message' => 'unauthorized']);
@@ -60,7 +62,7 @@ class LoginController extends Controller
          $token = $tokenResult->token;
 
          return response()->json([
-            'access_token' => $token->accessToken,
+            'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer' ,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
@@ -68,5 +70,21 @@ class LoginController extends Controller
 
             ]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    public function dashboard(): RedirectResponse
+    {
+        if(Auth::check()){
+            return view('dashboard');
+        }
+  
+        return redirect("login")->withSuccess('Opps! You do not have access');
+    }
+    
 
  }

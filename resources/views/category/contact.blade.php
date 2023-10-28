@@ -2,7 +2,7 @@
 <html lang="en">
   @include('category.header')
 <body>
-  @include('category.navbar')
+  
   <section class="contact bg-light mt-5">
     <div class="container">
       <div class="text-center">

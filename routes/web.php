@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-  
+ 
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -31,13 +31,13 @@ Route::post('/register' , [App\Http\Controllers\Auth\RegisterController::class,'
 Route::get('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 //
-//Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'index'])->name('service');
-//Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
-//Route::get('/contact', [App\Http\Controllers\Online\contactController::class, 'index'])->name('contact');
+Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'index'])->name('service');
+Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
+Route::get('/contact', [App\Http\Controllers\Online\contactController::class, 'index'])->name('contact');
 //Route::get('/admin' , [App\Http\Controllers\Administrator\AdminController::class,'index'])->name('admin');
 
  // mail send and verify
- Route::get('/active/{token}', [App\Http\Controllers\RegisterController::class, 'userActive'])->name('activie');
+Route::get('/active/{token}', [App\Http\Controllers\Auth\RegisterController::class, 'userActive'])->name('active');
 
-//Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
     

@@ -40,7 +40,7 @@ class verifyActive extends Mailable
     public function content(): Content
     {
         return new Content(
-                view: 'emails.userActive',
+                view: 'emails.verifyActive',
                 with: [
                     'firstname' => $this->user->firstname,
                     ]);
