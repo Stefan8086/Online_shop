@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
         //if validator has ben faild
         if ($validator->fails()) {
-            return redirect('register')
+            return redirect('/register')
                         ->withErrors($validator)
                         ->withInput();
          //if validator has ben faild
@@ -60,7 +60,9 @@ class RegisterController extends Controller
 
         if($user){
            return back()->with('success' , 'You have registered successfuly'); 
-        }else{
+
+        }else {
+
             return back()->with('fail' , 'Something wrong');
         }
       }
