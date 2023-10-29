@@ -28,7 +28,7 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'r
 Route::post('/register' , [App\Http\Controllers\Auth\RegisterController::class,'registerUser'])->name('register.user');
 
 // Logout
-Route::get('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 //
 Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'index'])->name('service');
@@ -38,6 +38,4 @@ Route::get('/contact', [App\Http\Controllers\Online\contactController::class, 'i
 
  // mail send and verify
 Route::get('/active/{token}', [App\Http\Controllers\Auth\RegisterController::class, 'userActive'])->name('active');
-
-Route::get('/dashboard', [App\Http\Controllers\Auth\LoginController::class, 'dashboard'])->name('dashboard');
     

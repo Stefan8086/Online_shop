@@ -43,6 +43,7 @@ class RegisterController extends Controller
             return redirect('/register')
                         ->withErrors($validator)
                         ->withInput();
+                        
          //if validator has ben faild
         }
        $user = new User([

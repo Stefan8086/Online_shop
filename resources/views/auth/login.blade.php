@@ -1,8 +1,9 @@
+@extends('category.navbar')
+@section('content')
+
 @include('category.header')
 <body>
 <!--Navbar link -->
-@include('category.navbar')
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-12">
@@ -68,5 +69,4 @@
 </div>
 </div>
 </div>
-</body>
-</html>
+@endsection

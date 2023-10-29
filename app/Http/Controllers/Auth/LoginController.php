@@ -42,7 +42,7 @@ class LoginController extends Controller
             return redirect()->intended('/home')
                 ->withSuccess('Signed in');
         }
-           
+          return redirect('login')->withErrors('Unfortunately, no user was found with this email'); 
         }
 
     
@@ -52,7 +52,7 @@ class LoginController extends Controller
         Auth::logout();
 
 
-        return redirect('/login');
+        return redirect('/home');
     }
 
  }
