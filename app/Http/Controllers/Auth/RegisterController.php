@@ -40,12 +40,12 @@ class RegisterController extends Controller
 
         //if validator has ben faild
         if ($validator->fails()) {
-            return redirect('/register')
+            return redirect(route('register'))
                         ->withErrors($validator)
                         ->withInput();
-                        
-         //if validator has ben faild
-        }
+       } else {
+
+        //if validator has ben faild
        $user = new User([
         'firstname' => $request->firstname ,
         'lastname' => $request->lastname ,
@@ -59,26 +59,20 @@ class RegisterController extends Controller
 
         Mail::to($user->email)->send(new userSignup($user));
 
-        if($user){
-           return back()->with('success' , 'You have registered successfuly'); 
-
-        }else {
-
-            return back()->with('fail' , 'Something wrong');
+      
+           return redirect(route('register'))->withSuccess('You have registered successfuly'); 
+           }
         }
-      }
-    
-
         // user active with signup email
         public function userActive($token)
         {
 
           $user = User::where('activation_token',$token)->first();
-
+        //if user activation token has not Exist   
           if(!$user){
 
             return redirect(route('login'))->with('error','This activation token is invalid .');
-        
+        //if user activation token has Exist
           } else {
 
             $user->active = true;
@@ -90,9 +84,9 @@ class RegisterController extends Controller
 
           
             return redirect(route('login'))->withSuccess('User has ben active');
-          } 
-       
-      }
-
-   }
+          }   
+       }
+    }
+    
+   
 
