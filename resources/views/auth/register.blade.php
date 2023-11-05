@@ -7,19 +7,14 @@
     <div class="row justify-content-center">
 <div class="col-md-9">
 <div class="card-body">
-    @if (session('status'))
-    <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-    </div>
-@endif
-
-{{ __('You are logged in!') }}
-</div>
-</div>
+    @if (Session::has('success'))
+        <div class="alert alert-success" role='alert'>
+            {{ Session::get('success') }}
+        </div>   
+    @endif
     <form method="POST" action="{{ route('register.user') }}">
         @csrf
-        
-          
+
         <div class="row mb-3">
             <label for="firstname" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
 

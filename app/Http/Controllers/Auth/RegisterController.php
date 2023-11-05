@@ -60,7 +60,7 @@ class RegisterController extends Controller
         Mail::to($user->email)->send(new userSignup($user));
 
       
-           return redirect(route('register'))->withSuccess('You have registered successfuly'); 
+           return back()->with('success','You have registered successfuly'); 
            }
         }
         // user active with signup email

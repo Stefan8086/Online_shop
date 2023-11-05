@@ -32,33 +32,22 @@ class LoginController extends Controller
 
     public function loginUser(Request $request)
     { 
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|email|unique:users' ,
-            'password' => 'required|confirmed|min:5|max:12' 
+        $request -> validate([
+            'email' => 'required|email' ,
+            'password' => 'required' 
         ]);
-
-        //if validator has ben faild
-        if ($validator->fails()) {
-           return redirect(route('login'))
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-
+        
         $credentials = $request->only('email','password');
+        if(Auth::attempt($credentials)) {
+            return redirect(route('home'))
+                ->with('success','Login Success');
 
-        // if user das not exit
-        if(!Auth::attempt($credentials)) {
-            return redirect(route('login'))
-                ->withErrors('Unfortunately, no user was found with this email');
         } 
-
-            $user = Auth::user();
-
-            // if user email has not verifed return this messege
-             if (!$user->hasVerifiedEmail()) {
-              return redirect(route('login'))->withErrors('Email has not verified'); 
+            return back()
+                ->with('error','Login details are not valid');
+                
         }
-    }
+
     
     public function logout()
     {
@@ -66,7 +55,7 @@ class LoginController extends Controller
         Auth::logout();
 
 
-        return redirect(route('home'));
+        return redirect(route('login'));
     }
 
  }
