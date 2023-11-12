@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Cashier\User;
 use Illuminate\Support\ServiceProvider;
-use Larvel\Cashier\Cashier;
+use Laravel\Paddle\Cashier;
+use Laravel\Cashier\calculate;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Cashier::useCustomerModel(User::class);
-         Cashier::calculateTaxes();
+        
+        
     }
 }
