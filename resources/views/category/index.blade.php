@@ -23,5 +23,6 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
         <script src="./assets/script/bootsrap.js"></script>
+        @livewireScripts
 </body>
 </html>

@@ -15,6 +15,7 @@
           <link rel="dns-prefetch" href="//fonts.bunny.net">
           <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+          @livewireStyles
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
                <title>Online_shop - @yield('title')</title>
                <!-- Scripts -->

@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('address_id');
-            $table->tinyInteger('status')->default(0);
-            $table->unsignedInteger('total_amount');
-            $table->unsignedInteger('paying_amount');
-            $table->enum('payment_type', ['pos' , 'cash' , 'online' , 'card']);
-            $table->tinyInteger('payment_status')->default(0);
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('product_id');
+            $table->decimal('total_price', 8 , 2);
+            $table->unsignedBigInteger('quantity');
             $table->timestamps();
+
+           
         });
     }
 

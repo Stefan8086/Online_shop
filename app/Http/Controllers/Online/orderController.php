@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Online;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class productController extends Controller
+class orderController extends Controller
 {
-    public function index()
+    public function order()
     {
-        return view('products.product');
+        return view('products.order');
     }
 }

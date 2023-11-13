@@ -32,8 +32,16 @@ Route::post('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logo
 
 //
 Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'index'])->name('service');
+
+
+
+
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
+Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
+
+
+
 
 Route::get('/contact', [App\Http\Controllers\Online\contactController::class, 'index'])->name('contact');
 //Route::get('/admin' , [App\Http\Controllers\Administrator\AdminController::class,'index'])->name('admin');
