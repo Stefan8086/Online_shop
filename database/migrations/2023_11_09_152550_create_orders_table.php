@@ -13,13 +13,23 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->decimal('total_price', 8 , 2);
-            $table->unsignedBigInteger('quantity');
+            $table->string('order_number')->unique();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')
+                  ->onUpdate('cascade')->onDelete('set null');
+            $table->float('sub_total');
+            $table->float('total_amount');
+            $table->integer('quantity');
+            $table->enum('payment_method',['cod','paypal'])->default('cod');
+            $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
+            $table->enum('status',['new','process','delivered','cancel'])->default('new');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('error')->nullable();
             $table->timestamps();
 
-           
+
         });
     }
 

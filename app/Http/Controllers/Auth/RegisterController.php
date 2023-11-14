@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class RegisterController extends Controller
 {
-    
+
     public function register()
     {
         return view('auth.register');
@@ -32,24 +32,24 @@ class RegisterController extends Controller
     public function registerUser(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'firstname' => 'required' ,
-            'lastname' => 'required' ,
+            'first_name' => 'required' ,
+            'last_name' => 'required' ,
             'email' => 'required|email|unique:users' ,
-            'password' => 'required|confirmed|min:5|max:12' 
+            'password' => 'required|confirmed|min:5|max:12'
         ]);
 
-        //if validator has ben faild
+        //if validator has ben failed
         if ($validator->fails()) {
             return redirect(route('register'))
                         ->withErrors($validator)
                         ->withInput();
        } else {
 
-        //if validator has ben faild
+        //if validator has ben failed
        $user = new User([
-        'firstname' => $request->firstname ,
-        'lastname' => $request->lastname ,
-        'email' => $request->email , 
+        'first_name' => $request->first_name ,
+        'last_name' => $request->last_name ,
+        'email' => $request->email ,
         'password' => bcrypt($request->password) ,
         'activation_token' => Str::random(60) ,
         'register_ip' => $request->ip() ,
@@ -59,8 +59,8 @@ class RegisterController extends Controller
 
         Mail::to($user->email)->send(new userSignup($user));
 
-      
-           return back()->with('success','You have registered successfuly'); 
+
+           return back()->with('success','You have registered Successfully');
            }
         }
         // user active with signup email
@@ -68,7 +68,7 @@ class RegisterController extends Controller
         {
 
           $user = User::where('activation_token',$token)->first();
-        //if user activation token has not Exist   
+        //if user activation token has not Exist
           if(!$user){
 
             return redirect(route('login'))->with('error','This activation token is invalid .');
@@ -82,11 +82,11 @@ class RegisterController extends Controller
 
             Mail::to($user->email)->send(new verifyActive($user));
 
-          
+
             return redirect(route('login'))->withSuccess('User has ben active');
-          }   
+          }
        }
     }
-    
-   
+
+
 

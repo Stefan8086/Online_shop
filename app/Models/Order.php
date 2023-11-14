@@ -21,5 +21,14 @@ class Order extends Model
         'product_id',
         'total_price',
         'quantity',
+        'order_number',
+        'sub_total',
+        'status',
+        'first_name',
+        'last_name',
+        'email',
+        'payment_method',
+        'payment_status',
    ];
+   
 }

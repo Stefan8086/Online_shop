@@ -30,7 +30,11 @@ Route::post('/register' , [App\Http\Controllers\Auth\RegisterController::class,'
 // Logout
 Route::post('/logout' , [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-//
+
+
+
+
+
 Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'index'])->name('service');
 
 
@@ -38,8 +42,12 @@ Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'i
 
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
-Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 
+
+Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
+Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
+Route::get('/order/show/{id}', "HomeController@orderShow")->name('user.order.show');
+Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
 
 
 

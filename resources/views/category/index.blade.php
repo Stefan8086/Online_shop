@@ -7,7 +7,7 @@
 <!--Carousel -->
 @include('category.main')
 <!--Study -->
-@include('category.product')
+@include('products.product')
 <!--education -->
 @include('category.education')
 <!-- service -->
