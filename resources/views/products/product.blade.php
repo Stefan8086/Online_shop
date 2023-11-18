@@ -2,7 +2,7 @@
 <html lang="en">
   @include('category.header')
 <body>
-  
+
 
 <!-- Product plans -->
 <section id="product" class="bg-light mt-5">
@@ -19,7 +19,7 @@
           <h5 class="card-title">PHP</h5>
           <p class="display-5 my-4 text-primary fw-bold">€ 2400</p>
           <p class="card-text mx-5 text-muted d-none d-lg-block">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Bay now</a>
+          <a href="{{ route('orders.index') }}" class="btn btn-primary">Bay now</a>
         </div>
       </div>
     </div>

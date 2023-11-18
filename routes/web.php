@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Login
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class,'login'])->name('login');
@@ -45,9 +45,8 @@ Route::get('/product', [App\Http\Controllers\Online\productController::class, 'i
 
 
 Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
-Route::get('/order', "HomeController@orderIndex")->name('user.order.index');
-Route::get('/order/show/{id}', "HomeController@orderShow")->name('user.order.show');
-Route::delete('/order/delete/{id}', [HomeController::class, 'userOrderDelete'])->name('user.order.delete');
+Route::get('/profile', [App\Http\Controllers\Online\OrderController::class, 'profile'])->name('profile');
+
 
 
 

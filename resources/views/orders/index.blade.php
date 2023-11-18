@@ -3,92 +3,77 @@
 @section('content')
 
  <!-- DataTales Example -->
- <div class="container-fluid">
-    <div class="col-lg-12"></div>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                @livewire('order')
-                <div class="card-header">
-                  <h4 style="float-left">Order Products</h4>
-                  <a href="#" style="float: right" classbtn btn></a>
-            </div>
+ <section class="section-5 pt-3 pb-3 mb-3 bg-white">
+    <div class="container">
+        <div class="light-font">
+            <ol class="breadcrumb primary-color mb-0">
+                <li class="breadcrumb-item"><a class="white-text" href="{{ route('profile') }}">Account</a></li>
+                <li class="breadcrumb-item">Orders</li>
+            </ol>
         </div>
     </div>
+ </section>
+ <section class="section-11">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                @include()
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                      <h2 class="h5 mb-0 pt-2 pb-2">Orders</h2>
+                    </div>
+                    <div class="card-body p-4">
+                       <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Age</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                @if ($orders->isNotEmpty())
+                                @foreach ($orders as $order )
 
+                           <tr>
+                                <td><a href="order.php">{{ $order->id }}</a></td>
+                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y') }}</td>
+                                <td><span class="badge bg-success">Deliverd</span></td>
+                                <td>€{{ number_format($order->sub_total,2)  }}</td>
+                              </tr>
+                              @endforeach
 
-   </div>
-   <div class="card-body">
-     <div class="table-responsive">
-       @if(count($orders)>0)
-       <table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
-         <thead>
-           <tr>
-             <th>S.N.</th>
-             <th>Order No.</th>
-             <th>Name</th>
-             <th>Email</th>
-             <th>Quantity</th>
-             <th>Charge</th>
-             <th>Total Amount</th>
-             <th>Status</th>
-             <th>Action</th>
-           </tr>
-         </thead>
-         <tfoot>
-           <tr>
-             <th>S.N.</th>
-             <th>Order No.</th>
-             <th>Name</th>
-             <th>Email</th>
-             <th>Quantity</th>
-             <th>Charge</th>
-             <th>Total Amount</th>
-             <th>Status</th>
-             <th>Action</th>
-             </tr>
-         </tfoot>
-         <tbody>
-           @foreach($orders as $order)
-               <tr>
-                   <td>{{$order->id}}</td>
-                   <td>{{$order->order_number}}</td>
-                   <td>{{$order->first_name}} {{$order->last_name}}</td>
-                   <td>{{$order->email}}</td>
-                   <td>{{$order->quantity}}</td>
-                   <td>${{$order->shipping->price}}</td>
-                   <td>${{number_format($order->total_amount,2)}}</td>
-                   <td>
-                       @if($order->status=='new')
-                         <span class="badge badge-primary">{{$order->status}}</span>
-                       @elseif($order->status=='process')
-                         <span class="badge badge-warning">{{$order->status}}</span>
-                       @elseif($order->status=='delivered')
-                         <span class="badge badge-success">{{$order->status}}</span>
-                       @else
-                         <span class="badge badge-danger">{{$order->status}}</span>
-                       @endif
-                   </td>
-                   <td>
-                       <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                       <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
-                         @csrf
-                         @method('delete')
-                             <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                       </form>
-                   </td>
-               </tr>
-           @endforeach
-         </tbody>
-       </table>
-       <span style="float:right">{{$orders->links()}}</span>
-       @else
-         <h6 class="text-center">No orders found!!! Please order some products</h6>
-       @endif
-     </div>
-   </div>
-</div>
-@endsection
+                              @else
+                              <tr>
+                                <td colspan="3">Orders not found</td>
+                              </tr>
+                              @endif
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                       </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="Ente">
+                            </div>
+                               <div class="d.flex">
+                                <button class="btn btn-dark">Update</button>
+                               </div>
+                            </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+ </section>
 
 @push('styles')
  <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">

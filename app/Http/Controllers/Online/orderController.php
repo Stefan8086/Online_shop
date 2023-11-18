@@ -5,46 +5,45 @@ namespace App\Http\Controllers\Online;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\User;
-use PDF;
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Notification;
 use Helper;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
 use App\Models\ProductReview;
-
+use App\Models\User as ModelsUser;
 
 class orderController extends Controller
 {
+     public function order()
+ {
+     return view('orders.index');
+ }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
-            return view('orders.index');
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
+        $data['orders'] = $orders;
+
+        return view('orders.index',$data);
     }
 
-    public function profileUpdate(Request $request,$id){
-        // return $request->all();
-        $user=User::findOrFail($id);
-        $data=$request->all();
-        $status=$user->fill($data)->save();
-        if($status){
-            request()->session()->flush('success','Successfully updated your profile');
-        }
-        else{
-            request()->session()->flush('error','Please try again!');
-        }
-        return redirect()->back();
+    public function profile()
+    {
+        return view('orders.profile');
     }
 
 
-      // Order
+  // Order
       public function orderIndex(){
-        $orders=Order::orderBy('id','DESC')->where('user_id',auth()->user()->id)->paginate(10);
-        return view('user.order.index')->with('orders',$orders);
+        $orders=Order::orderBy('id','DESC')
+                  ->where('user_id',auth()->user()->id)->paginate(10);
+        return view('user.order.index')
+                  ->with('orders',$orders);
     }
     public function userOrderDelete($id)
     {
@@ -52,20 +51,20 @@ class orderController extends Controller
         if($order){
            if($order->status=="process" || $order->status=='delivered' || $order->status=='cancel'){
                 return redirect()->back()->with('error','You can not delete this order now');
-           }
-           else{
+           } else {
                 $status=$order->delete();
                 if($status){
-                    request()->session()->flash('success','Order Successfully deleted');
+
+            Session::flash('success','Order Successfully deleted');
                 }
                 else{
-                    request()->session()->flash('error','Order can not deleted');
+            Session::flash('error','Order can not deleted');
                 }
                 return redirect()->route('user.order.index');
            }
         }
         else{
-            request()->session()->flash('error','Order can not found');
+            Session::flash('error','Order can not found');
             return redirect()->back();
         }
     }
@@ -74,11 +73,13 @@ class orderController extends Controller
     {
         $order=Order::find($id);
         // return $order;
-        return view('user.order.show')->with('order',$order);
+        return view('orders.show')->with('order',$order);
     }
     // Product Review
-    public function productReviewIndex(){
-        $reviews=ProductReview::getAllUserReview();
+    public function productReviewIndex()
+    {
+        $reviews=ProductReview::orderBy('id','desc')->where('user_id', auth()->user()->id)->paginate(10);
+
         return view('user.review.index')->with('reviews',$reviews);
     }
 
@@ -358,7 +359,7 @@ class orderController extends Controller
         // return $order;
         $file_name=$order->order_number.'-'.$order->first_name.'.pdf';
         // return $file_name;
-        $pdf=pdf::loadview('backend.order.pdf',compact('order'));
+        $pdf=PDF::loadview('orders.pdf',compact('order'));
         return $pdf->download($file_name);
     }
     // Income chart
