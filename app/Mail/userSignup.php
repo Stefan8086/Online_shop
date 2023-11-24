@@ -26,7 +26,7 @@ class userSignup extends Mailable
     {
         $this->user = $user;
         $this->activation_token = $user->activation_token;
-    
+
     }
 
     /**

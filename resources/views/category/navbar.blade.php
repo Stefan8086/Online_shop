@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>   
+<body>
     <nav class="navbar navbar-expand-sm ">
         <div class="container-fluid">
           <!--navbar Logo -->
@@ -12,8 +12,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-         
-        
+
+
 
         <!--navbar mobile -->
 
@@ -34,14 +34,14 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Education</a>
-              </li>  
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('service') }}">Service</a>
-              </li>  
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
-              </li> 
-            </ul>  
+              </li>
+            </ul>
           </div>
               <!-- Authentication Links -->
               <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
@@ -75,7 +75,7 @@
                      {{ __('Logout') }}</a>
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-                        </form> 
+                        </form>
                       </div>
                     </li>
                     @endguest

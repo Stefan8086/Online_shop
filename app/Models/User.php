@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, Billable;
 
-    
+
     protected $fillable = [
         'firstname' ,
         'lastname' ,
@@ -28,7 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime'
     ];

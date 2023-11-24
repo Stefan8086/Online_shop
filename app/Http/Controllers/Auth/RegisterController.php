@@ -32,10 +32,11 @@ class RegisterController extends Controller
     public function registerUser(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'first_name' => 'required' ,
-            'last_name' => 'required' ,
+            'firstname' => 'required' ,
+            'lastname' => 'required' ,
             'email' => 'required|email|unique:users' ,
             'password' => 'required|confirmed|min:5|max:12'
+
         ]);
 
         //if validator has ben failed
@@ -47,8 +48,8 @@ class RegisterController extends Controller
 
         //if validator has ben failed
        $user = new User([
-        'first_name' => $request->first_name ,
-        'last_name' => $request->last_name ,
+        'firstname' => $request->firstname ,
+        'lastname' => $request->lastname ,
         'email' => $request->email ,
         'password' => bcrypt($request->password) ,
         'activation_token' => Str::random(60) ,

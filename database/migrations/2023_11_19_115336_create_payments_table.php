@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('order_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->float('price');
+            $table->integer('order_id');
             $table->enum('status',['new','progress','delivered','cancel'])->default('new');
-            $table->integer('quantity');
-            $table->float('amount');
+            $table->string('requestInfo',)->nullable();
+            $table->string('verifyInfo',)->nullable();
+            $table->string('gateway');
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('payments');
     }
 };

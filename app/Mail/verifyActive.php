@@ -20,8 +20,8 @@ class verifyActive extends Mailable
     public function __construct(User $user)
     {
         $this->user = $user;
-        
-    
+
+
     }
 
     /**
@@ -45,7 +45,7 @@ class verifyActive extends Mailable
                     'firstname' => $this->user->firstname,
                     ]);
         }
-        
+
 
     /**
      * Get the attachments for the message.

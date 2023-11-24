@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\online;
+namespace App\Http\Controllers\Online;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class profileController extends Controller
+class paymentController extends Controller
 {
     //
 }
