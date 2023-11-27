@@ -13,12 +13,12 @@
    <div class="row my-5 align-items-center justify-content-center g-0">
     <div class="col-8 col-lg-4">
       <div class="card border-primary border-2">
-        <div class="card-body tex-center py-4">
-        <img src="{{ asset('assets/image/2.jpg') }}" class="card-img-top" alt="...">
+        <div class="card-body tex-center py-2">
+        <img src="{{ asset('assets/image/20.jpg') }}" class="card-img-top" alt="...">
           <h5 class="card-title">PHP</h5>
           <p class="display-5 my-4 text-primary fw-bold">€ 2400</p>
           <p class="card-text mx-5 text-muted d-none d-lg-block">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="{{ route('order') }}" class="btn btn-primary">Bay now</a>
+          <a href="{{ route('cart') }}" class="btn btn-primary">Bay now</a>
         </div>
       </div>
     </div>

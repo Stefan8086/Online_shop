@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Online;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Gloudemans\Shoppingcart\Facades\Cart;
-
+use App\Models\Cart;
+use App\Models\Product;
 
 class cartController extends Controller
 {
         public function index()
-    {
-    $cartItems = Cart::instance('cart')->content();
+  {
 
-       return view('products.cart',['cartItems'=>$cartItems]);
+      return view('products.cart');
 
-    }
+  }
+
+   
 }

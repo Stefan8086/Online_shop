@@ -9,14 +9,15 @@ class productController extends Controller
 {
     public function index()
     {
-
-    $products = Product::orderBy('created_at', 'DESC')->paginate(12);
-        return view('products.product');
+        $products = Product::all();
+        return view('products.product', ['products' => $products]);
     }
 
-    public function productDetails($slug)
+    public function productCarts($slug)
     {
         $product = Product::where('slug',$slug)->first();
-       return view('products.Details');
+        return view('products.cart',['product'=>$product]);
     }
+
+
 }
