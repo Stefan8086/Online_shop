@@ -42,7 +42,7 @@ Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'i
 
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
-Route::get('/product/{slug}', [App\Http\Controllers\Online\productController::class, 'productCarts'])->name('product.carts');
+Route::get('/details/', [App\Http\Controllers\Online\productController::class, 'productDetails'])->name('product.details');
 Route::get('/cart', [App\Http\Controllers\Online\cartController::class, 'index'])->name('cart');
 Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 //Route::post('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');

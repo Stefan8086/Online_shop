@@ -9,16 +9,26 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function index()
+    public function category()
     {
-        $products = Product::all();
-        return $products;
+       return $this->belongsTo(Category::class);
     }
+
+
+
+    protected $table = 'products';
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
+        'sale_price',
+        'regular_price',
         'image',
-        'price',
+        'quantity' ,
+        'status',
+        'discount',
     ];
+
+
 }

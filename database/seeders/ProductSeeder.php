@@ -14,24 +14,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $products = [
-            [
-                'name' => 'Php',
-                'description' => 'Learning Php',
-                'image' => "{{ asset('assets/image/20.jpg')}}",
-                'price' => 2400
-            ],
-            [
-                'name' => 'Html,Css,Js',
-                'description' => 'Learning Html, Css, Js',
-                'image' => "{{ asset('assets/image/21.jpg')}}",
-                'price' => 1200
-            ],
-            [
-                'name' => 'Laravel',
-                'description' => 'Learning Laravel',
-                'image' => "{{ asset('assets/image/22.jpg')}}",
-                'price' => 2800
-            ],
+        
 
         ];
 

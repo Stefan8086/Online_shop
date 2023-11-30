@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Online;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\View\View;
+
+
 class productController extends Controller
 {
     public function index()
@@ -13,11 +16,11 @@ class productController extends Controller
         return view('products.product', compact('products'));
     }
 
-    public function productCarts($slug)
+    public function productDetails()
     {
-        $product = Product::where('slug',$slug)->first();
-        return view('products.cart',['product'=>$product]);
-    }
 
+        $products = Product::all();
+        return view('products.details');
+    }
 
 }
