@@ -10,7 +10,7 @@ class productController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products.product', ['products' => $products]);
+        return view('products.product', compact('products'));
     }
 
     public function productCarts($slug)

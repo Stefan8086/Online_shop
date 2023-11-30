@@ -9,5 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    
+    public function index()
+    {
+        $products = Product::all();
+        return $products;
+    }
+
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'price',
+    ];
 }
