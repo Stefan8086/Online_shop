@@ -13,7 +13,6 @@
      <meta name="msapplication-TileImage" content="">
      <meta name="msapplication-TileColor" content="#FFFFFF">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="description" content="Surfside Media">
      <meta name="keywords" content="Surfside Media">
      <meta name="author" content="Surfside Media">
@@ -24,20 +23,14 @@
           <link rel="stylesheet" href="{{ asset('assets/style/bootstrap.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/register.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/order.css') }}">
-          <link id="rtl-link" rel="stylesheet" type="text/css" href="{{ asset('assets/style/bootstrap.css') }}">
-          <link rel="stylesheet" href="{{ asset('assets/style/cart.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ asset('assets/style/cart.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ asset('assets/style/cart.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ asset('assets/style/cart.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ asset('assets/style/cart.css') }}">
-          <link rel="stylesheet" type="text/css" href="{{ asset('assets/style/cart.css') }}">
-          
+          <link rel="stylesheet" href="{{ asset('assets/style/details.css') }}">
+
+
           <link rel="dns-prefetch" href="//fonts.bunny.net">
           <link rel="preconnect" href="https://fonts.gstatic.com">
           <link rel="manifest" href="manifest.json">
           <link rel="apple-touch-icon" href="">
-          <link rel="icon" href="" type="image/x-icon">
-          <link rel="icon" href="" type="image/x-icon">
+
           <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
           @livewireStyles
