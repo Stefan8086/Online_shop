@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<body>
     <nav class="navbar navbar-expand-sm ">
         <div class="container-fluid">
           <!--navbar Logo -->
@@ -85,9 +81,7 @@
             </ul>
           </div>
       </nav>
-      <main class="py-4">
+      <section >
         @yield('content')
-    </main>
-</body>
-</html>
+    </section>
 
