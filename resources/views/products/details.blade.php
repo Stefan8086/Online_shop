@@ -31,16 +31,32 @@
         </div>
 
         <div class="col-md-6 col-sm-1">
-            <div class="cloth-details-size">
+            <div class="price-details">
                 <div class="product-card-titel">
 
                 </div>
                 <div class="label-section">
                     <span class="badge badge-grey-color">Best seller</span>
                     <span class="label-text">Best Education</span>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Order</button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <p>Some text lorem ipsum.</p>
+                        <p>Some text lorem ipsum.</p>
+                        <p>Some text lorem ipsum.</p>
+                        <a class="btn btn-secondary" href="{{ route('order') }}">
+                            <i class="bi bi-cart-fill"></i>
+                        </a>
+                      </div>
+                    </div>
                 </div>
             </div>
-
+                </div>
+            </div>
     </div>
 </div>
 </section>

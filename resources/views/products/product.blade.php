@@ -1,6 +1,5 @@
 @extends('category.navbar')
 
-
   @section('content')
   @include('category.header')
 <!-- Product plans -->
@@ -16,7 +15,7 @@
       <div class="card border-primary border-2" style="width:400px">
         <div class="card-body tex-center py-4 ">
             <a href="{{ route('product.details',["id" => 1]) }}">
-        <img src="{{ asset('assets/image/20.jpg') }}" class="card-img-top" alt="..." style="width:100%">
+        <img src="{{ asset('assets/image/2.jpg') }}" class="card-img-top" alt="..." style="width:100%">
             </a>
         <br>
         <br>
@@ -31,7 +30,7 @@
       <div class="card border-primary border-2" style="width:400px">
         <div class="card-body tex-center py-4">
             <a href="{{ route('product.details',["id" => 2]) }}">
-        <img src="{{ asset('assets/image/21.jpg') }}" class="card-img-top" alt="...">
+        <img src="{{ asset('assets/image/3.jpg') }}" class="card-img-top" alt="...">
             </a>
             <br>
             <br>
@@ -46,7 +45,7 @@
       <div class="card border-primary border-2" style="width:400px">
         <div class="card-body tex-center py-4">
             <a href="{{ route('product.details',["id" => 3]) }}">
-        <img src="{{ asset('assets/image/22.jpg') }}" class="card-img-top" alt="...">
+        <img src="{{ asset('assets/image/4.jpg') }}" class="card-img-top" alt="...">
             </a>
             <br>
             <br>

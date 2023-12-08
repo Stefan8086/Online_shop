@@ -24,6 +24,8 @@
           <link rel="stylesheet" href="{{ asset('assets/style/register.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/order.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/details.css') }}">
+          <link rel="stylesheet" href="{{ asset('assets/style/demo4.css') }}">
+          <link rel="stylesheet" href="{{ asset('assets/style/header.css') }}">
 
 
           <link rel="dns-prefetch" href="//fonts.bunny.net">
