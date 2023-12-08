@@ -42,13 +42,18 @@ Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'i
 
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
+Route::get('/cart', [App\Http\Controllers\Online\productController::class, 'cart'])->name('cart');
+Route::get('/add-to-cart/{id}', [App\Http\Controllers\Online\productController::class, 'addToCart'])->name('add.to.cart');
+Route::get('/update-cart', [App\Http\Controllers\Online\productController::class, 'update'])->name('update.cart');
+Route::get('/remove-from-cart', [App\Http\Controllers\Online\productController::class, 'remove'])->name('remove.from.cart');
 Route::get('/details/{id}', [App\Http\Controllers\Online\productController::class, 'productDetails'])->middleware('auth')->name('product.details');
 Route::get('/cart', [App\Http\Controllers\Online\cartController::class, 'index'])->name('cart');
 Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 //Route::post('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 
 
-
+// search
+Route::post('/search' , [App\Http\Controllers\Online\searchController::class, 'index'])->name('search');
 
 
 Route::get('/contact', [App\Http\Controllers\Online\contactController::class, 'index'])->name('contact');
