@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.28.0.
+ * Generated for Laravel 10.30.1.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -435,6 +435,18 @@
         {
                         /** @var \Illuminate\Foundation\Application $instance */
                         return $instance->runningInConsole();
+        }
+                    /**
+         * Determine if the application is running any of the given console commands.
+         *
+         * @param string|array $commands
+         * @return bool 
+         * @static 
+         */ 
+        public static function runningConsoleCommand(...$commands)
+        {
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->runningConsoleCommand(...$commands);
         }
                     /**
          * Determine if the application is running unit tests.
@@ -5550,6 +5562,18 @@
                         return $instance->pretend($callback);
         }
                     /**
+         * Execute the given callback without "pretending".
+         *
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */ 
+        public static function withoutPretending($callback)
+        {            //Method inherited from \Illuminate\Database\Connection         
+                        /** @var \Illuminate\Database\MySqlConnection $instance */
+                        return $instance->withoutPretending($callback);
+        }
+                    /**
          * Bind values to their parameters in the given statement.
          *
          * @param \PDOStatement $statement
@@ -6475,6 +6499,18 @@
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->setQueueResolver($resolver);
+        }
+                    /**
+         * Set the database transaction manager resolver implementation.
+         *
+         * @param callable $resolver
+         * @return \Illuminate\Events\Dispatcher 
+         * @static 
+         */ 
+        public static function setTransactionManagerResolver($resolver)
+        {
+                        /** @var \Illuminate\Events\Dispatcher $instance */
+                        return $instance->setTransactionManagerResolver($resolver);
         }
                     /**
          * Gets the raw, unprepared listeners.
@@ -14523,16 +14559,16 @@
                         return $instance->hasTable($table);
         }
                     /**
-         * Get the column listing for a given table.
+         * Get the columns for a given table.
          *
          * @param string $table
          * @return array 
          * @static 
          */ 
-        public static function getColumnListing($table)
+        public static function getColumns($table)
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnListing($table);
+                        return $instance->getColumns($table);
         }
                     /**
          * Drop all tables from the database.
@@ -14691,13 +14727,26 @@
          *
          * @param string $table
          * @param string $column
+         * @param bool $fullDefinition
          * @return string 
          * @static 
          */ 
-        public static function getColumnType($table, $column)
+        public static function getColumnType($table, $column, $fullDefinition = false)
         {            //Method inherited from \Illuminate\Database\Schema\Builder         
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-                        return $instance->getColumnType($table, $column);
+                        return $instance->getColumnType($table, $column, $fullDefinition);
+        }
+                    /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumnListing($table)
+        {            //Method inherited from \Illuminate\Database\Schema\Builder         
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getColumnListing($table);
         }
                     /**
          * Modify a table on the schema.
@@ -14885,6 +14934,28 @@
         {
                         /** @var \Illuminate\Session\SessionManager $instance */
                         return $instance->blockDriver();
+        }
+                    /**
+         * Get the maximum number of seconds the session lock should be held for.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockLockSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockLockSeconds();
+        }
+                    /**
+         * Get the maximum number of seconds to wait while attempting to acquire a route block session lock.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function defaultRouteBlockWaitSeconds()
+        {
+                        /** @var \Illuminate\Session\SessionManager $instance */
+                        return $instance->defaultRouteBlockWaitSeconds();
         }
                     /**
          * Get the session configuration.
@@ -18398,7 +18469,243 @@
      
 }
 
-        namespace Laravel\Socialite\Facades { 
+        namespace Gloudemans\Shoppingcart\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Cart {
+                    /**
+         * Set the current cart instance.
+         *
+         * @param string|null $instance
+         * @return \Gloudemans\Shoppingcart\Cart 
+         * @static 
+         */ 
+        public static function instance($instance = null)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->instance($instance);
+        }
+                    /**
+         * Get the current cart instance.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function currentInstance()
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->currentInstance();
+        }
+                    /**
+         * Add an item to the cart.
+         *
+         * @param mixed $id
+         * @param mixed $name
+         * @param int|float $qty
+         * @param float $price
+         * @param array $options
+         * @param float $taxrate
+         * @return \Gloudemans\Shoppingcart\CartItem 
+         * @static 
+         */ 
+        public static function add($id, $name = null, $qty = null, $price = null, $options = [], $taxrate = null)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->add($id, $name, $qty, $price, $options, $taxrate);
+        }
+                    /**
+         * Update the cart item with the given rowId.
+         *
+         * @param string $rowId
+         * @param mixed $qty
+         * @return \Gloudemans\Shoppingcart\CartItem 
+         * @static 
+         */ 
+        public static function update($rowId, $qty)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->update($rowId, $qty);
+        }
+                    /**
+         * Remove the cart item with the given rowId from the cart.
+         *
+         * @param string $rowId
+         * @return void 
+         * @static 
+         */ 
+        public static function remove($rowId)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->remove($rowId);
+        }
+                    /**
+         * Get a cart item from the cart by its rowId.
+         *
+         * @param string $rowId
+         * @return \Gloudemans\Shoppingcart\CartItem 
+         * @static 
+         */ 
+        public static function get($rowId)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->get($rowId);
+        }
+                    /**
+         * Destroy the current cart instance.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function destroy()
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->destroy();
+        }
+                    /**
+         * Get the content of the cart.
+         *
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function content()
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->content();
+        }
+                    /**
+         * Get the number of items in the cart.
+         *
+         * @return int|float 
+         * @static 
+         */ 
+        public static function count()
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->count();
+        }
+                    /**
+         * Get the total price of the items in the cart.
+         *
+         * @param int $decimals
+         * @param string $decimalPoint
+         * @param string $thousandSeperator
+         * @return string 
+         * @static 
+         */ 
+        public static function total($decimals = null, $decimalPoint = null, $thousandSeperator = null)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->total($decimals, $decimalPoint, $thousandSeperator);
+        }
+                    /**
+         * Get the total tax of the items in the cart.
+         *
+         * @param int $decimals
+         * @param string $decimalPoint
+         * @param string $thousandSeperator
+         * @return float 
+         * @static 
+         */ 
+        public static function tax($decimals = null, $decimalPoint = null, $thousandSeperator = null)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->tax($decimals, $decimalPoint, $thousandSeperator);
+        }
+                    /**
+         * Get the subtotal (total - tax) of the items in the cart.
+         *
+         * @param int $decimals
+         * @param string $decimalPoint
+         * @param string $thousandSeperator
+         * @return float 
+         * @static 
+         */ 
+        public static function subtotal($decimals = null, $decimalPoint = null, $thousandSeperator = null)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->subtotal($decimals, $decimalPoint, $thousandSeperator);
+        }
+                    /**
+         * Search the cart content for a cart item matching the given search closure.
+         *
+         * @param \Closure $search
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function search($search)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->search($search);
+        }
+                    /**
+         * Associate the cart item with the given rowId with the given model.
+         *
+         * @param string $rowId
+         * @param mixed $model
+         * @return void 
+         * @static 
+         */ 
+        public static function associate($rowId, $model)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->associate($rowId, $model);
+        }
+                    /**
+         * Set the tax rate for the cart item with the given rowId.
+         *
+         * @param string $rowId
+         * @param int|float $taxRate
+         * @return void 
+         * @static 
+         */ 
+        public static function setTax($rowId, $taxRate)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->setTax($rowId, $taxRate);
+        }
+                    /**
+         * Store an the current instance of the cart.
+         *
+         * @param mixed $identifier
+         * @return void 
+         * @static 
+         */ 
+        public static function store($identifier)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->store($identifier);
+        }
+                    /**
+         * Restore the cart with the given identifier.
+         *
+         * @param mixed $identifier
+         * @return void 
+         * @static 
+         */ 
+        public static function restore($identifier)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        $instance->restore($identifier);
+        }
+                    /**
+         * Deletes the stored cart with given identifier
+         *
+         * @param mixed $identifier
+         * @static 
+         */ 
+        public static function deleteStoredCart($identifier)
+        {
+                        /** @var \Gloudemans\Shoppingcart\Cart $instance */
+                        return $instance->deleteStoredCart($identifier);
+        }
+         
+    }
+     
+}
+
+    namespace Laravel\Socialite\Facades { 
             /**
      * 
      *
@@ -18524,6 +18831,408 @@
         {            //Method inherited from \Illuminate\Support\Manager         
                         /** @var \Laravel\Socialite\SocialiteManager $instance */
                         return $instance->getContainer();
+        }
+         
+    }
+     
+}
+
+    namespace Livewire { 
+            /**
+     * 
+     *
+     * @see \Livewire\LivewireManager
+     */ 
+        class Livewire {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setProvider($provider)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setProvider($provider);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function provide($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->provide($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function component($name, $class = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->component($name, $class);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function componentHook($hook)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->componentHook($hook);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function propertySynthesizer($synth)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->propertySynthesizer($synth);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function directive($name, $callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->directive($name, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function precompiler($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->precompiler($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function new($name, $id = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->new($name, $id);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isDiscoverable($componentNameOrClass)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isDiscoverable($componentNameOrClass);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function resolveMissingComponent($resolver)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->resolveMissingComponent($resolver);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function mount($name, $params = [], $key = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->mount($name, $params, $key);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function snapshot($component)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->snapshot($component);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fromSnapshot($snapshot)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->fromSnapshot($snapshot);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function listen($eventName, $callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->listen($eventName, $callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function current()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->current();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function update($snapshot, $diff, $calls)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->update($snapshot, $diff, $calls);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function updateProperty($component, $path, $value)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->updateProperty($component, $path, $value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isLivewireRequest()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isLivewireRequest();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function componentHasBeenRendered()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->componentHasBeenRendered();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function forceAssetInjection()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->forceAssetInjection();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setUpdateRoute($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setUpdateRoute($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getUpdateUri()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getUpdateUri();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setScriptRoute($callback)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setScriptRoute($callback);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function useScriptTagAttributes($attributes)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->useScriptTagAttributes($attributes);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withUrlParams($params)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withUrlParams($params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withQueryParams($params)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withQueryParams($params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withCookie($name, $value)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withCookie($name, $value);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function withCookies($cookies)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->withCookies($cookies);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function test($name, $params = [])
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->test($name, $params);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function visit($name)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->visit($name);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function actingAs($user, $driver = null)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->actingAs($user, $driver);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isRunningServerless()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->isRunningServerless();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->addPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setPersistentMiddleware($middleware)
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->setPersistentMiddleware($middleware);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getPersistentMiddleware()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->getPersistentMiddleware();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function flushState()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->flushState();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalUrl()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalUrl();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalPath()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalPath();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function originalMethod()
+        {
+                        /** @var \Livewire\LivewireManager $instance */
+                        return $instance->originalMethod();
         }
          
     }
@@ -19055,6 +19764,132 @@
         public static function emailVerification()
         {
                         return \Illuminate\Routing\Router::emailVerification();
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class Route {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportLazyLoading\SupportLazyLoading::registerRouteMacro()
+         * @param mixed $enabled
+         * @static 
+         */ 
+        public static function lazy($enabled = true)
+        {
+                        return \Illuminate\Routing\Route::lazy($enabled);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\View { 
+            /**
+     * 
+     *
+     */ 
+        class ComponentAttributeBag {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportBladeAttributes\SupportBladeAttributes::provide()
+         * @param mixed $name
+         * @static 
+         */ 
+        public static function wire($name)
+        {
+                        return \Illuminate\View\ComponentAttributeBag::wire($name);
+        }
+         
+    }
+            /**
+     * 
+     *
+     */ 
+        class View {
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $data
+         * @static 
+         */ 
+        public static function layoutData($data = [])
+        {
+                        return \Illuminate\View\View::layoutData($data);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $section
+         * @static 
+         */ 
+        public static function section($section)
+        {
+                        return \Illuminate\View\View::section($section);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $title
+         * @static 
+         */ 
+        public static function title($title)
+        {
+                        return \Illuminate\View\View::title($title);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $slot
+         * @static 
+         */ 
+        public static function slot($slot)
+        {
+                        return \Illuminate\View\View::slot($slot);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $view
+         * @param mixed $params
+         * @static 
+         */ 
+        public static function extends($view, $params = [])
+        {
+                        return \Illuminate\View\View::extends($view, $params);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param mixed $view
+         * @param mixed $params
+         * @static 
+         */ 
+        public static function layout($view, $params = [])
+        {
+                        return \Illuminate\View\View::layout($view, $params);
+        }
+                    /**
+         * 
+         *
+         * @see \Livewire\Features\SupportPageComponents\SupportPageComponents::registerLayoutViewMacros()
+         * @param callable $callback
+         * @static 
+         */ 
+        public static function response($callback)
+        {
+                        return \Illuminate\View\View::response($callback);
         }
          
     }
@@ -23020,7 +23855,9 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Cart extends \Gloudemans\Shoppingcart\Facades\Cart {}
             class Socialite extends \Laravel\Socialite\Facades\Socialite {}
+            class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
