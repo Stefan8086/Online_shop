@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
   @include('category.header')
 <body>
   
