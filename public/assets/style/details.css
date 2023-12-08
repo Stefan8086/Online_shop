@@ -37,3 +37,6 @@
                 animation: animate 25s linear infinite;
         bottom: -150px;
         opacity: 0.2 !important; }
+
+        .section-t-space {
+            padding-top: 70px; }
