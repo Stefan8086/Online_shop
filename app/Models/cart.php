@@ -11,8 +11,9 @@ class cart extends Model
 
     protected $fillable = [
         'name',
-        'slug',
+        'price',
+        'description' ,
+        'image'
        
-
    ];
 }
