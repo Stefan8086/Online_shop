@@ -28,13 +28,7 @@ class cartController extends Controller
   {
       $product = Product::find($request->id);
 
-      // Check if the product exists
-     if ($product == null) {
-        return redirect()->back()->with(['error' => 'Product not found.']);
-    }
-
-
-        $price = $product->price;
+        $price = $product->sale_price ? $product->sale_price : $product->regular_price;
         $quantity = 1;
         Cart::instance('cart')->add($product->id, $product->name, qty:$quantity, price:$price)
         ->associate(Product::class);
