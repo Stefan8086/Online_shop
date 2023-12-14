@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
             $user->password = bcrypt('secret');
             $user->save();
         }
+
+        \App\Models\Product::factory(3)->create();
     }
 }

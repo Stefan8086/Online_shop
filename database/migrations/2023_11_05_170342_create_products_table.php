@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('image');
-            $table->decimal('price', 8 , 2);
+            $table->decimal('regular_price');
+            $table->decimal('sale_price')->nullable();
             $table->unsignedInteger('quantity')->default(1);
             $table->float('discount')->nullable();
             $table->enum('status',['active','inactive'])->default('inactive');

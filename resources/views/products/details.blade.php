@@ -29,34 +29,58 @@
         <div class="col-md-6 col-sm-1">
             <img src="{{ asset('assets/image/15.jpg')}}/{{ $product->image ?? '' }}" class="img-fluid" alt="" >
         </div>
-
         <div class="col-md-6 col-sm-1">
-            <div class="price-details">
-                <div class="product-card-titel">
+            <div class="cloth-details-size">
+                <div class="product-count">
+                    <ul>
+                        <li>
+                            <img src="{{ asset('assets/image/fire.gif') }}"
+                                class="img-fluid lazyload" alt="image">
+                            <span class="p-counter">37</span>
+                            <span class="lang">orders in last 24 hours</span>
+                        </li>
+                        <li>
+                            <img src="{{ asset('assets/image/person.gif') }}"
+                                class="img-fluid user_img lazyload" alt="image">
+                            <span class="p-counter">44</span>
+                            <span class="lang">active view this</span>
+                        </li>
+                    </ul>
+                </div>
 
+                <div class="details-image-concept">
+                    <h2>Different PHP training</h2>
                 </div>
+
                 <div class="label-section">
-                    <span class="badge badge-grey-color">Best seller</span>
-                    <span class="label-text">Best Education</span>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Order</button>
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                      <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasRightLabel">Order</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                      </div>
-                      <div class="offcanvas-body">
-                        <p>Some text lorem ipsum.</p>
-                        <p>Some text lorem ipsum.</p>
-                        <p>Some text lorem ipsum.</p>
-                        <a class="btn btn-secondary" href="{{ route('order') }}">
-                            <i class="bi bi-cart-fill"></i>
-                        </a>
-                      </div>
-                    </div>
+                    <span class="badge badge-grey-color">Best Training</span>
+                    <span class="label-text">Training</span>
+                </div>
+
+                <h3 class="price-detail">
+                   @if ($product->sale_price ?? '')
+                   €{{ $product->sale_price ?? ''}}
+                   <del>€{{ $product->regular_price ?? ''}}</del><span>
+                    {{ round((($product->regular_price - $product->sale_price)/$product->regular_price)*100) ?? ''}}
+                    % off</span>
+                    @else
+                    {{ $product->regular_price ?? ''}}
+                    @endif
+                </h3>
+                <div class="product-buttons">
+                    <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit();"
+                        id="cartEffect" class="btn btn-solid hover-solid btn-animation">
+                        <i class="bi bi-cart3"></i>
+                        <span>Add To Cart</span>
+                        <form id="addtocart" method="POST" action="{{ route('add.to.cart') }}">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id ?? ''}}">
+                            <input type="hidden" name="quantity" id="qty" value="1">
+                        </form>
+                    </a>
                 </div>
             </div>
-                </div>
-            </div>
+        </div>
     </div>
 </div>
 </section>
@@ -65,8 +89,3 @@
 
 
 
-
-
-
-</body>
-</html>

@@ -25,7 +25,8 @@ crossorigin="anonymous"></script>
 <div class="bg-overlay"></div>
 <script src="{{ asset('assets/script/header.js') }}"></script>
 <script src="{{ asset('assets/script/bootsrap.js') }}"></script>
+<script src="{{ asset('assets/script/cart.js') }}"></script>
 <script>
-
+    
 </body>
 </html>
