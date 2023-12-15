@@ -72,7 +72,7 @@
                         id="cartEffect" class="btn btn-solid hover-solid btn-animation">
                         <i class="bi bi-cart3"></i>
                         <span>Add To Cart</span>
-                        <form id="addtocart" method="POST" action="{{ route('add.to.cart') }}">
+                        <form id="addtocart" method="POST" action="{{ route('cart.add') }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $product->id ?? ''}}">
                             <input type="hidden" name="quantity" id="qty" value="1">

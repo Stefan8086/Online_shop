@@ -66,7 +66,7 @@
                                 <div class="qty-box">
                                     <div class="input-group">
                                         <input type="number" name="quantity" class="form-control input-number"
-                                            value="1">
+                                            value="{{ $item->quantity }}">
                                     </div>
                                 </div>
                             </div>
