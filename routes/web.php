@@ -43,11 +43,11 @@ Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'i
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
 Route::get('/cart', [App\Http\Controllers\Online\cartController::class, 'index'])->name('cart');
-Route::post('/add.to.cart', [App\Http\Controllers\Online\cartController::class, 'addToCart'])->name('add.to.cart');
-Route::get('/update-cart', [App\Http\Controllers\Online\cartController::class, 'update'])->name('cart.update');
-Route::get('/remove-from-cart', [App\Http\Controllers\Online\cartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/add', [App\Http\Controllers\Online\cartController::class, 'addToCart'])->name('cart.add');
+//Route::get('/update-cart', [App\Http\Controllers\Online\cartController::class, 'update'])->name('cart.update');
+//Route::get('/remove-from-cart', [App\Http\Controllers\Online\cartController::class, 'remove'])->name('cart.remove');
 Route::get('/details/{id}', [App\Http\Controllers\Online\productController::class, 'productDetails'])->middleware('auth')->name('product.details');
-Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
+//Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 //Route::post('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 
 
