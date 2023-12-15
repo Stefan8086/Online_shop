@@ -28,7 +28,11 @@ class cartController extends Controller
   {
       $product = Product::find($request->id);
 
+<<<<<<< HEAD
         if (!$product) {
+=======
+      if (!$product) {
+>>>>>>> 48c9f4008c2d2d089587086c00bb114d92935494
         // Return an error message
         return redirect()->back()->with(['error' => 'Product not found. ']);
     }
