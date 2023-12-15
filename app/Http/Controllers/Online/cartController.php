@@ -28,10 +28,15 @@ class cartController extends Controller
   {
       $product = Product::find($request->id);
 
+        if (!$product) {
+        // Return an error message
+        return redirect()->back()->with(['error' => 'Product not found. ']);
+    }
+
         $price = $product->sale_price ? $product->sale_price : $product->regular_price;
         $quantity = 1;
         Cart::instance('cart')->add($product->id, $product->name, qty:$quantity, price:$price)
-        ->associate(Product::class);
+        ->associate('App\Models\Product');
        // Return a success message
        return redirect()->back()->with(['message' => 'Product added to cart successfully.']);
 
