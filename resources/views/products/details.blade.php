@@ -61,7 +61,7 @@
                    @if ($product->sale_price ?? '')
                    €{{ $product->sale_price ?? ''}}
                    <del>€{{ $product->regular_price ?? ''}}</del><span>
-                    {{ round((($product->regular_price - $product->sale_price)/$product->regular_price)*100) ?? ''}}
+                    {{ round((($product->regular_price - $product->sale_price)/$product->regular_price)*100) }}
                     % off</span>
                     @else
                     {{ $product->regular_price ?? ''}}

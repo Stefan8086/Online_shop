@@ -36,8 +36,7 @@
 <!-- Cart Section Start -->
 <section class="cart-section section-b-space">
     <div class="container">
-        @php $total = 0 @endphp
-        @if(session('cart'))
+        @if($cartItems->Count() > 0)
 <div class="row">
     <div class="col-md-12 text-center">
         <table class="table cart-table">
@@ -52,28 +51,27 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (session('cart') as $id => $details)
-                @php $total += $details['price'] * $details['quantity'] @endphp
-                <tr data-id="{{ $id }}">
-                    <td data-th="Product">
+                @foreach ($cartItems as $item)
+                <tr>
+                    <td>
                         <a href="{{ route('product.details') }}">
-                            <img src="{{ asset( 'assets/images/')}}/{{ $details['image'] }}" class="blur-up lazyloaded"
-                                alt="{{ $details['image'] }}">
+                            <img src="{{ asset( 'assets/images')}}/{{ $item->model->image }}" class="blur-up lazyloaded"
+                                alt="{{ $item->model->name}}">
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('product.details') }}">{{ $details['name'] }}</a>
+                        <a href="{{ route('product.details') }}">{{ $item->model->name}}</a>
                         <div class="mobile-cart-content row">
                             <div class="col">
                                 <div class="qty-box">
                                     <div class="input-group">
                                         <input type="number" name="quantity" class="form-control input-number"
-                                            value="{{ $details['quantity'] }}">
+                                            value="1">
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <h2>€{{ $details['price'] }}</h2>
+                                <h2>€{{ $item->price }}</h2>
                             </div>
                             <div class="col">
                                 <h2 class="td-color">
@@ -85,21 +83,22 @@
                         </div>
                     </td>
                     <td>
-                        <h2>€{{ $details['price'] }}</h2>
+                        <h2>€{{ $item->price }}</h2>
                     </td>
                     <td>
                         <div class="qty-box">
                             <div class="input-group">
                                 <input type="number" name="quantity"
                                     data-rowid="ba02b0dddb000b25445168300c65386d"
-                                    class="form-control input-number" value="{{ $cartItem->qty }}">
+                                    class="form-control input-number" value="{{ $item->qty }}">
                             </div>
                         </div>
                     </td>
-                    <td colspan="5" class="text-right"><h3><strong>Total €{{ $total }}</strong></h3>
+                    <td>
+                        <h2 class="td-color">€{{ $item->subtotal() }}</h2>
                     </td>
                     <td>
-                        <a href="{{ url('/') }}" class="btn btn-warning javascript:void(0)">
+                        <a href="javascript:void(0)">
                             <i class="fas fa-times"></i>
                         </a>
                     </td>
@@ -108,15 +107,15 @@
             </tbody>
         </table>
     </div>
-            <div class="col-12 mt-md-5 mt-4">
-                <div class="row">
-                    <div class="col-sm-7 col-5 order-1">
-                        <div class="left-side-button text-end d-flex d-block justify-content-end">
-                            <a href="javascript:void(0)"
-                                class="text-decoration-underline theme-color d-block text-capitalize">clear
-                                all items</a>
-                        </div>
+        <div class="col-12 mt-md-5 mt-4">
+            <div class="row">
+                <div class="col-sm-7 col-5 order-1">
+                    <div class="left-side-button text-end d-flex d-block justify-content-end">
+                        <a href="javascript:void(0)"
+                            class="text-decoration-underline theme-color d-block text-capitalize">clear
+                             all items</a>
                     </div>
+                 </div>
                     <div class="col-sm-5 col-7">
                         <div class="left-side-button float-start">
                             <a href="../shop.html" class="btn btn-solid-default btn fw-bold mb-0 ms-0">
@@ -171,10 +170,9 @@
         @else
           <div class="row">
             <div class="col-md-12 text-center">
-                <h3>You Cart is empty !</h3>
+                <h3>Your Cart is empty !</h3>
                 <h5 class="mt-3">Add Items to it now.</h5>
                 <a href="{{ route('product') }}" class="btn btn-warning mt-5">Shop Now</a>
-
             </div>
           </div>
         @endif
