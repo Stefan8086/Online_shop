@@ -26,7 +26,7 @@ class cartController extends Controller
 
 
       if (!$product) {
-        return redirect()->back()->with(['error' => 'Product not found. ']);
+        return redirect()->back()->with(['error','Product not found. ']);
     }
 
         // Determine the price based on sale or regular price
@@ -44,7 +44,7 @@ class cartController extends Controller
         ])->associate('App\Models\Product');
 
        // Return a success message
-       return redirect()->route('cart')->with(['message' => 'Product added to cart successfully.']);
+       return redirect()->route('cart')->with(['message','Product added to cart successfully.']);
 
  }
 }
