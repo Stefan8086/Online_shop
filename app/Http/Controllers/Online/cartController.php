@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Online;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Controller\Online\CartService;
-use App\Controller\Online\ProductService;
-use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Http\Controllers\ProductValidation;
+use Cart;
+
 
 
 use price;
@@ -17,32 +15,36 @@ class cartController extends Controller
 {
         public function index()
   {
-    $cartItems = Cart::instance('cart')->content();
-      return view('products.cart' , ['cartItems'=>$cartItems]);
-
+    $cartItems = Cart::content();
+      return view('products.cart' , compact('cartItems'));
   }
-
-
 
   public function addToCart(Request $request)
   {
+      // Retrieve the product from the database based on the request
       $product = Product::find($request->id);
 
-<<<<<<< HEAD
-        if (!$product) {
-=======
+
       if (!$product) {
->>>>>>> 48c9f4008c2d2d089587086c00bb114d92935494
-        // Return an error message
         return redirect()->back()->with(['error' => 'Product not found. ']);
     }
 
-        $price = $product->sale_price ? $product->sale_price : $product->regular_price;
-        $quantity = 1;
-        Cart::instance('cart')->add($product->id, $product->name, qty:$quantity, price:$price)
-        ->associate('App\Models\Product');
+        // Determine the price based on sale or regular price
+        $price = $product->sale_price ?? $product->regular_price;
+
+          // Define the quantity
+        $quantity = $request->quantity ?? 1;
+
+         // Add the product to the cart
+        Cart::instance('cart')->add([
+            'id' => $product->id,
+            'name' => $product->name,
+            'qty' => $quantity,
+            'price' => $price,
+        ])->associate('App\Models\Product');
+
        // Return a success message
-       return redirect()->back()->with(['message' => 'Product added to cart successfully.']);
+       return redirect()->route('cart')->with(['message' => 'Product added to cart successfully.']);
 
  }
 }
