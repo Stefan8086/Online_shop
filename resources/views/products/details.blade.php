@@ -68,21 +68,52 @@
                     @endif
                 </h3>
                 <div class="product-buttons">
-                    <a href="javascript:void(0)" onclick="event.preventDefault();document.getElementById('addtocart').submit();"
+                    <a href="javascript:void(0)" onclick="addToCart({{ optional($product)->id }});
                         id="cartEffect" class="btn btn-solid hover-solid btn-animation">
                         <i class="bi bi-cart3"></i>
                         <span>Add To Cart</span>
-                        <form id="addtocart" method="POST" action="{{ route('cart.add') }}">
+                     </a>
+                        <form id="addtocart" method="POST" action="{{ route('cart.add') }}" style="display: none;">
                             @csrf
                             <input type="hidden" name="id" value="{{ $product->id ?? ''}}">
                             <input type="hidden" name="quantity" id="qty" value="1">
                         </form>
-                    </a>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function addToCart(productId) {
+       // document.getElementById('addtocart').submit();
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route("cart.add") }}';
+            form.style.display = 'none';
+
+            var csrfToken = document.createElement('input');
+            csrfToken.type = 'hidden';
+            csrfToken.name = '_token';
+            csrfToken.value = '{{ csrf_token() }}';
+
+            var productIdInput = document.createElement('input');
+            productIdInput.type = 'hidden';
+            productIdInput.name = 'id';
+            productIdInput.value = productId;
+
+            var quantityInput = document.createElement('input');
+            quantityInput.type = 'hidden';
+            quantityInput.name = 'quantity';
+            quantityInput.value = 1;
+
+            form.appendChild(csrfToken);
+            form.appendChild(productIdInput);
+            form.appendChild(quantityInput);
+
+            document.body.appendChild(form);
+            form.submit();
+    }
+</script>
 </section>
 
 @endsection
