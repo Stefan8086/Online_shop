@@ -2,18 +2,6 @@
 @section('content')
 
 <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
-    <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -32,9 +20,15 @@
         </div>
     </div>
 </section>
-
 <!-- Cart Section Start -->
 <section class="cart-section section-b-space">
+    @if(session('message'))
+        <div class="alert alert-success">{{ session('message') }}</div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
     <div class="container">
         @if($cartItems->Count() > 0)
 <div class="row">
@@ -118,7 +112,7 @@
                  </div>
                     <div class="col-sm-5 col-7">
                         <div class="left-side-button float-start">
-                            <a href="../shop.html" class="btn btn-solid-default btn fw-bold mb-0 ms-0">
+                            <a href="{{ route('product') }}" class="btn btn-solid-default btn fw-bold mb-0 ms-0">
                                 <i class="fas fa-arrow-left"></i> Continue Shopping</a>
                         </div>
                     </div>
