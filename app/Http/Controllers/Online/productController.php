@@ -24,17 +24,20 @@ class productController extends Controller
     public function productDetails($id)
     {
 
-        $products = Product::find($id);
-        return view('products.details', ['product' => $products]);
+        $product = Product::find($id);
+
+      
+
+        return view('products.details', compact('product'));
 
     }
 
-   
+
  }
 
 
 
-    
 
-    
+
+
 
