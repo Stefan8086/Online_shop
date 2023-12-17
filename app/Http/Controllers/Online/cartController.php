@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Cart;
 
-
-
-use price;
-
 class cartController extends Controller
 {
         public function index()
@@ -26,7 +22,11 @@ class cartController extends Controller
 
 
       if (!$product) {
+
         return redirect()->back()->with(['error','Product not found. ']);
+
+        // Return an error message
+        return redirect()->back()->with(['error' => 'Product not found. ']);
     }
 
         // Determine the price based on sale or regular price
