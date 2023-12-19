@@ -12,6 +12,37 @@
 
 namespace App\Models{
 /**
+ * App\Models\Product
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $description
+ * @property string $image
+ * @property string $price
+ * @property int $quantity
+ * @property float|null $discount
+ * @property string $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
+ */
+	class Product extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -62,5 +93,83 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent implements \Illuminate\Contracts\Auth\MustVerifyEmail {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\cart
+ *
+ * @method static \Database\Factories\cartFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|cart newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|cart newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|cart query()
+ */
+	class cart extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\order
+ *
+ * @property int $id
+ * @property string $order_number
+ * @property int|null $user_id
+ * @property float $sub_total
+ * @property int $quantity
+ * @property string $payment_status
+ * @property string $status
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|order newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|order newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|order query()
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereOrderNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order wherePaymentStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereSubTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|order whereUserId($value)
+ */
+	class order extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\settings
+ *
+ * @property int $id
+ * @property string $description
+ * @property string $short_des
+ * @property string $logo
+ * @property string $photo
+ * @property string $address
+ * @property string $phone
+ * @property string $email
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|settings newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|settings newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|settings query()
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereLogo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereShortDes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereUpdatedAt($value)
+ */
+	class settings extends \Eloquent {}
 }
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\User;
+
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +20,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        
+        for ($i=0; $i < 30; $i++) {
+            $user = new User;
+            $user->name = fake()->name();
+            $user->email = fake()->email();
+            $user->password = bcrypt('secret');
+            $user->save();
+        }
+
+        \App\Models\Product::factory(3)->create();
     }
 }

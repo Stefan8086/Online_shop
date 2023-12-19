@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Product extends Model
 {
     use HasFactory;
 
-    public function category()
+    public function product()
     {
-       return $this->belongsTo(Category::class);
+       return $this->belongsTo(product::class);
     }
 
 
@@ -20,7 +19,6 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'description',
         'sale_price',
         'regular_price',
