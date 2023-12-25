@@ -7,45 +7,64 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Cart;
 
+
 class cartController extends Controller
 {
         public function index()
   {
-    $cartItems = Cart::content();
-      return view('products.cart' , compact('cartItems'));
+    $details = Product::all();
+      return view('products.cart' , compact('details'));
   }
 
-  public function addToCart(Request $request)
+  public function addToCart($id)
   {
       // Retrieve the product from the database based on the request
-      $product = Product::find($request->id);
+      $product = Product::findOrFail($id);
 
 
-      if (!$product) {
+      $cart = session()->get('cart', []);
 
-        // Return an error message
-        return redirect()->back()->with(['error','Product not found. ']);
+      if (isset($cart[$id])) {
+        $cart[$id]['quantity']++;
+
+      } else {
+        $cart[$id] = [
+            'name' => $product->name,
+            'quantity' => 1,
+            'price' => $product->price,
+            "image" => $product->image
+
+        ];
     }
 
-        // Determine the price based on sale or regular price
-        $price = $product->sale_price ?? $product->regular_price;
+        session()->put('cart', $cart);
 
-          // Define the quantity
-        $quantity = $request->quantity ?? 1;
+        return redirect()->back();
+    }
 
-         // Add the product to the cart
-        Cart::instance('cart')->add([
-            'id' => $product->id,
-            'name' => $product->name,
-            'qty' => $quantity,
-            'price' => $price,
-        ])->associate('App\Models\Product');
+    public function update(Request $request)
+    {
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
 
-       // Return a success message
-       return redirect()->route('cart')->with(['message','Product added to cart successfully.']);
-
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
+    }
  }
-}
+
 
 
 

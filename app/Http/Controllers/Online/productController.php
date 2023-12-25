@@ -26,7 +26,7 @@ class productController extends Controller
 
         $product = Product::find($id);
 
-      
+
 
         return view('products.details', compact('product'));
 
