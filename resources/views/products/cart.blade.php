@@ -70,19 +70,24 @@
         <td>
             <div class="qty-box">
                 <div class="input-group">
-                    <input type="number" name="quantity"
-                        data-rowid="ba02b0dddb000b25445168300c65386d"
-                        class="form-control input-number" value="{{ $details['quantity'] }}">
+                <form action="{{ route('cart.update') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{ optional($details)['id'] }}" >
+                <input type="number" name="quantity" value="{{ $cartItem['quantity'] }}">
+                        <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
+                    </form>
                 </div>
             </div>
         </td>
         <td>
             <h2 class="td-color">€{{ $total }}</h2>
         </td>
-        <td>
-            <a href="javascript:void(0)">
+            <td class="hidden text-right md:table-cell" >
+            <form action="{{ route('cart.remove') }}" method="POST">
+                @csrf
+                <input type="hidden" value="{{ optional($details)['id'] }}" name="id">
                 <i class="bi bi-x"></i>
-            </a>
+        </form>
         </td>
     </tr>
 </tbody>
@@ -92,9 +97,12 @@
     <div class="row">
         <div class="col-sm-7 col-5 order-1">
             <div class="left-side-button text-end d-flex d-block justify-content-end">
+                <form action="{{ route('cart.clear') }}" method="POST">
+                    @csrf
                 <a href="javascript:void(0)"
                     class="text-decoration-underline theme-color d-block text-capitalize">clear
                     all items</a>
+                </form>
             </div>
         </div>
         <div class="col-sm-5 col-7">

@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="details-image-concept">
-                    <h2>{{ $product->name }}</h2>
+                    <h2>Different PHP training</h2>
                 </div>
 
                 <div class="label-section">
@@ -58,51 +58,58 @@
                     <span class="label-text">Training</span>
                 </div>
                 <h3 class="price-detail">
-                    <p><strong>Price: </strong> {{ $product->price ?? '' }}€</p>
+                    <p><strong>Price: </strong> {{ $product->price }}€</p>
                 </h3>
                 <div class= "product-buttons">
-                    <form method="POST" action="{{ route('cart.add', ['id' => $product->id]) }}">
+                    <form method="POST" action="{{ route('cart.add') }}">
                         @csrf
                     <p class="btn-holder">
-                        <button id="addToCartBtn" data-product-id="{{ $product->id }}">
+                        <input type="hidden" value="{{ $product->id }}" name="id">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $product->price }}" name="price">
+                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <button type="submit" class="btn btn-warning btn-block text-center" onclick="addToCart(1)">
                         <i class="bi bi-cart3"></i>
                         <span>Add To Cart</span>
                         </button>
                        </p>
                     </form>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        // Listen for the "Add to Cart" button click
-        $('#addToCartBtn').on('click', function() {
-            var productId = $(this).data('product-id');
+    function addToCart(productId) {
+       // document.getElementById('addtocart').submit();
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '{{ route("cart.add", ["id" => ":id"]) }}'.replace(':id', productId);
+            form.style.display = 'none';
 
-            // Make an AJAX request to add the product to the cart
-            $.ajax({
-                type: 'POST',
-                url: '{{ route("cart.add", ["id" => ":id"]) }}'.replace(':id', productId),
-                data: {_token: '{{ csrf_token() }}'},
-                success: function(response) {
-                    // Update the cart count on the UI
-                    updateCartCount(response.cartCount);
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
+            var csrfToken = document.createElement('input');
+            csrfToken.type = 'hidden';
+            csrfToken.name = '_token';
+            csrfToken.value = '{{ csrf_token() }}';
 
-        // Function to update the cart count on the UI
-        function updateCartCount(count) {
-            $('#cart-count').text(count);
-        }
-    });
+            var productIdInput = document.createElement('input');
+            productIdInput.type = 'hidden';
+            productIdInput.name = 'id';
+            productIdInput.value = productId;
+
+            var quantityInput = document.createElement('input');
+            quantityInput.type = 'hidden';
+            quantityInput.name = 'quantity';
+            quantityInput.value =  productId;
+
+            form.appendChild(csrfToken);
+            form.appendChild(productIdInput);
+            form.appendChild(quantityInput);
+
+            document.body.appendChild(form);
+            form.submit();
+    }
 </script>
 </section>
 
