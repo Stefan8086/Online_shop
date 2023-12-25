@@ -43,9 +43,10 @@ Route::get('/service', [App\Http\Controllers\Online\serviceController::class, 'i
 // Product
 Route::get('/product', [App\Http\Controllers\Online\productController::class, 'index'])->name('product');
 Route::get('/cart', [App\Http\Controllers\Online\cartController::class, 'index'])->name('cart');
-Route::post('/cart/add/{id}', [App\Http\Controllers\Online\cartController::class, 'addToCart'])->name('cart.add');
-Route::patch('/update-cart', [App\Http\Controllers\Online\cartController::class, 'update'])->name('cart.update');
-Route::delete('/remove-from-cart', [App\Http\Controllers\Online\cartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/add', [App\Http\Controllers\Online\cartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [App\Http\Controllers\Online\cartController::class, 'updateCart'])->name('cart.update');
+Route::delete('/cart/remove', [App\Http\Controllers\Online\cartController::class, 'removeCart'])->name('cart.remove');
+Route::delete('/clear', [App\Http\Controllers\Online\cartController::class, 'clearAllCart'])->name('cart.clear');
 Route::get('/details/{id}', [App\Http\Controllers\Online\productController::class, 'productDetails'])->middleware('auth')->name('product.details');
 //Route::get('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
 //Route::post('/order', [App\Http\Controllers\Online\OrderController::class, 'order'])->name('order');
