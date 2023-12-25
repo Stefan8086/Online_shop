@@ -1,4 +1,8 @@
-@include('category.header')
+
+
+<html>
+    @include('category.header')
+    <body>
 <header class="header-style-2" id="home">
     <div class="main-header navbar-searchbar">
         <div class="container-fluid-lg">
@@ -51,57 +55,57 @@
         <li class="onhover-dropdown wislist-dropdown">
             <div class="cart-media">
                 <a href="{{ route('cart') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-                        <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span id="cart-count" class="label label-theme rounded-pill">
-                        {{ Cart::instance('cart')->content()->count() }}
-                    </span>
-                </a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+                      <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6">
+                             </path></svg>
+                             <span id="cart-count" class="label label-theme rounded-pill">
+                                0
+                           </span>
+                        </a>
+                     </div>
+                 </li>
+            <li class="onhover-dropdown">
+         <div class="cart-media name-usr">
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+         </svg>
             </div>
-        </li>
-        <li class="onhover-dropdown">
-            <div class="cart-media name-usr">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+         <div class="onhover-div profile-dropdown">
+             <ul>
+        @guest
+        @if (Route::has('login'))
+            <li>
+                <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+        @endif
+        @if (Route::has('register'))
+            <li>
+                <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+            @endif
+            @else
+            <li>
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->firstname }}
+            </a>
+            <a class="dropdown-item"href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+                </form>
             </div>
-            <div class="onhover-div profile-dropdown">
-                <ul>
-                    @guest
-                    @if (Route::has('login'))
-                        <li>
-                          <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-                      </li>
-                    @endif
-                    @if (Route::has('register'))
-                        <li>
-                          <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-                      </li>
-                      @endif
-                      @else
-                      <li>
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                         {{ Auth::user()->firstname }}
-                     </a>
-                      <a class="dropdown-item"href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                       {{ __('Logout') }}</a>
-                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                          </form>
-                        </div>
-                      </li>
-                      @endguest
-                      </li>
-                </ul>
-            </div>
-        </li>
+            </li>
+            @endguest
+            </li>
+         </ul>
+    </div>
+</li>
     </ul>
 </div>
     <div class="search-full">
@@ -160,4 +164,9 @@
     </ul>
 </div>
 @yield('content')
+
+@push('script')
+
+</body>
+</html>
 

@@ -37,8 +37,10 @@
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
           @livewireStyles
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                <title>Online_shop - @yield('title')</title>
             </head>
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
                <!-- Scripts -->
  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 

@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-sm-1">
-            <img src="{{ asset('assets/image/15.jpg')}}/{{ $product->image ?? '' }}" class="img-fluid" alt="" >
+            <img src="{{ asset('assets/image/15.jpg')}}" class="img-fluid" alt="" >
         </div>
         <div class="col-md-6 col-sm-1">
             <div class="cloth-details-size">
@@ -49,70 +49,60 @@
                 </div>
 
                 <div class="details-image-concept">
-                    <h2>Different PHP training</h2>
+                    <h2>{{ $product->name }}</h2>
                 </div>
 
                 <div class="label-section">
+
                     <span class="badge badge-grey-color">Best Training</span>
                     <span class="label-text">Training</span>
                 </div>
-
                 <h3 class="price-detail">
-                   @if ($product->sale_price ?? '')
-                   €{{ $product->sale_price ?? ''}}
-                   <del>€{{ $product->regular_price ?? ''}}</del><span>
-                    {{ round((($product->regular_price - $product->sale_price)/$product->regular_price)*100) }}
-                    % off</span>
-                    @else
-                    {{ $product->regular_price ?? ''}}
-                    @endif
+                    <p><strong>Price: </strong> {{ $product->price ?? '' }}€</p>
                 </h3>
-                <div class="product-buttons">
-                    <a href="javascript:void(0)" onclick="addToCart({{ optional($product)->id }});
-                        id="cartEffect" class="btn btn-solid hover-solid btn-animation">
+                <div class= "product-buttons">
+                    <form method="POST" action="{{ route('cart.add', ['id' => $product->id]) }}">
+                        @csrf
+                    <p class="btn-holder">
+                        <button id="addToCartBtn" data-product-id="{{ $product->id }}">
                         <i class="bi bi-cart3"></i>
                         <span>Add To Cart</span>
-                     </a>
-                        <form id="addtocart" method="POST" action="{{ route('cart.add') }}" style="display: none;">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $product->id ?? ''}}">
-                            <input type="hidden" name="quantity" id="qty" value="1">
-                        </form>
-                    </div>
+                        </button>
+                       </p>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script>
-    function addToCart(productId) {
-       // document.getElementById('addtocart').submit();
-            var form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '{{ route("cart.add") }}';
-            form.style.display = 'none';
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Listen for the "Add to Cart" button click
+        $('#addToCartBtn').on('click', function() {
+            var productId = $(this).data('product-id');
 
-            var csrfToken = document.createElement('input');
-            csrfToken.type = 'hidden';
-            csrfToken.name = '_token';
-            csrfToken.value = '{{ csrf_token() }}';
+            // Make an AJAX request to add the product to the cart
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("cart.add", ["id" => ":id"]) }}'.replace(':id', productId),
+                data: {_token: '{{ csrf_token() }}'},
+                success: function(response) {
+                    // Update the cart count on the UI
+                    updateCartCount(response.cartCount);
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
 
-            var productIdInput = document.createElement('input');
-            productIdInput.type = 'hidden';
-            productIdInput.name = 'id';
-            productIdInput.value = productId;
-
-            var quantityInput = document.createElement('input');
-            quantityInput.type = 'hidden';
-            quantityInput.name = 'quantity';
-            quantityInput.value = 1;
-
-            form.appendChild(csrfToken);
-            form.appendChild(productIdInput);
-            form.appendChild(quantityInput);
-
-            document.body.appendChild(form);
-            form.submit();
-    }
+        // Function to update the cart count on the UI
+        function updateCartCount(count) {
+            $('#cart-count').text(count);
+        }
+    });
 </script>
 </section>
 
