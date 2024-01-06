@@ -10,11 +10,8 @@
                         <div class="logo">
                             <a href="#"><img src="{{asset('assets')}}" alt="#"></a>
                         </div>
-                        @php
-                            $settings=DB::table('settings')->get();
-                        @endphp
-                        <p class="text">@foreach($settings as $data) {{$data->short_des}} @endforeach</p>
-                        <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
+                        <p class="text"></p>
+                        <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789"></a></span></p>
                     </div>
                     <!-- End Single Widget -->
                 </div>
@@ -53,9 +50,9 @@
                         <!-- Single Widget -->
                         <div class="contact">
                             <ul>
-                                <li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-                                <li>@foreach($settings as $data) {{$data->email}} @endforeach</li>
-                                <li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->

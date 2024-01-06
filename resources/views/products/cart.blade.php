@@ -40,68 +40,67 @@
     @php $total = 0 @endphp
     @if(session('cart'))
         @foreach(session('cart') as $id => $details)
-            @php $total += $details['price'] * $details['quantity'] @endphp
+        @php
+        // Check if 'image', 'price', and 'quantity' keys are set in $details array
+        $image = isset($details['image']) ? $details['image'] : 'default-image.jpg'; // Provide a default image path
+        $price = isset($details['price']) ? $details['price'] : 0;
+        $quantity = isset($details['quantity']) ? $details['quantity'] : 0;
+        $subtotal = $price * $quantity;
+        $total += $subtotal;
+    @endphp
     <tr data-id="{{ $id }}">
         <td data-th="Product">
-            <a href="{{ $details['image'] }}">
-                <img src="{{ $details['image'] }}" class="blur-up lazyloaded"
-                    alt="">
+            <a href="{{ $image }}">
+                <img src="{{ $image}}" class="blur-up lazyloaded" alt="">
+            </a>
         </td>
         <td>
-            <a href="{{ $details['name'] }}">Lorem ipsum dolor sit amet</a>
-            <dir class="mobile-cart-content row">
+            <a href="{{ route('product.details', ['id' => $id]) }}">{{ $details['name'] }}</a>
+            <div class="mobile-cart-content row">
                 <div class="col">
                     <div class="qty-box">
                         <div class="input-group">
                             <input type="text" name="quantity" class="form-control input-number"
-                                value="1">
+                                value="{{ $quantity }}">
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <h2>€{{ $details['price'] }}</h2>
-                </div>
                </div>
-            </div>
-        </td>
+            </td>
         <td>
-            <h2>€{{ $details['price'] }}</h2>
+            <h2>€{{ $price }}</h2>
         </td>
+         <!-- Your cart items -->
         <td>
             <div class="qty-box">
                 <div class="input-group">
-                <form action="{{ route('cart.update') }}" method="POST">
-                @csrf
-                <input type="hidden" name="id" value="{{ optional($details)['id'] }}" >
-                <input type="number" name="quantity" value="{{ $cartItem['quantity'] }}">
-                        <button class="px-4 mt-1 py-1.5 text-sm rounded rounded shadow text-violet-100 bg-violet-500">Update</button>
-                    </form>
-                </div>
-            </div>
+                    <input type="number" name="quantity" data-rowid="{{ $id }}"
+                       class="form-control quantity cart-update " value="{{ $quantity}}">
+                 </div>
+             </div>
         </td>
         <td>
-            <h2 class="td-color">€{{ $total }}</h2>
+            <h2 class="td-color">€{{ $subtotal }}</h2>
         </td>
             <td class="hidden text-right md:table-cell" >
-            <form action="{{ route('cart.remove') }}" method="POST">
+              <form action="{{ route('cart.remove') }}" method="POST">
                 @csrf
-                <input type="hidden" value="{{ optional($details)['id'] }}" name="id">
-                <i class="bi bi-x"></i>
-        </form>
-        </td>
-    </tr>
-</tbody>
+                @method('DELETE')
+                <input type="hidden" value="{{ $id }}" name="id">
+                <button type="submit" class="btn btn-link"><i class="bi bi-x-lg"></i></button>
+            </form>
+         </td>
+      </tr>
+   </tbody>
 </table>
-</div>
-<div class="col-12 mt-md-5 mt-4">
-    <div class="row">
+  </div>
+    <div class="col-12 mt-md-5 mt-4">
+      <div class="row">
         <div class="col-sm-7 col-5 order-1">
             <div class="left-side-button text-end d-flex d-block justify-content-end">
-                <form action="{{ route('cart.clear') }}" method="POST">
+                <form action="{{ route('cart.clear') }}" method="DELETE">
                     @csrf
-                <a href="javascript:void(0)"
-                    class="text-decoration-underline theme-color d-block text-capitalize">clear
-                    all items</a>
+                    <button type="submit" class="text-decoration-underline theme-color d-block text-capitalize btn btn-link">Clear All Items</button>
                 </form>
             </div>
         </div>
@@ -153,17 +152,18 @@
 @endsection
 
 
+
 @push('script')
 <script type="text/javascript">
 
-    $(".cart.update").change(function (e) {
+    $(".cart-update").change(function (e) {
         e.preventDefault();
 
         var ele = $(this);
 
         $.ajax({
             url: '{{ route('cart.update') }}',
-            method: "patch",
+            method: "put",
             data: {
                 _token: '{{ csrf_token() }}',
                 id: ele.parents("tr").attr("data-id"),
