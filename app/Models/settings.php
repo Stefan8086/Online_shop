@@ -9,13 +9,17 @@ class settings extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-    'short_des',
-    'description',
-    'photo',
-    'address',
-    'phone',
-    'email',
-    'logo'
-];
+
+    protected $table = 'settings';
+
+    protected $fillable = [
+        'key',
+        'display_name',
+        'value',
+        'details',
+        'type' ,
+        'group',
+        'order',
+    ];
+
 }
