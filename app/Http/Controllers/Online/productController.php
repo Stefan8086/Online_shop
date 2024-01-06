@@ -17,15 +17,34 @@ class productController extends Controller
     }
     public function index()
     {
+
         $products = Product::all();
+
         return view('products.product', compact('products'));
     }
 
     public function productDetails($id)
     {
-        $product = Product::find($id);
+        try {
+         // Assuming you have three products in your database with IDs 1, 2, and 3
+        $detailsId = [1, 2, 3];
+
+         // Check if the provided ID is one of the expected IDs
+         if (!in_array($id, $detailsId)) {
+            return response()->view('errors.404', [], 404);
+        }
+
+        // Fetch the product details based on the provided ID
+        $product = Product::findOrFail($id);
 
         return view('products.details', compact('product'));
+
+
+    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+        // Handle the exception (e.g., redirect to a 404 page)
+        return response()->view('errors.404', [], 404);
+        }
+
 
     }
 
