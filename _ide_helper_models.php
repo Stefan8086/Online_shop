@@ -24,6 +24,8 @@ namespace App\Models{
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Product|null $product
+ * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
@@ -46,15 +48,18 @@ namespace App\Models{
  * App\Models\User
  *
  * @property int $id
+ * @property int|null $role_id
  * @property string $firstname
  * @property string $lastname
  * @property string $email
+ * @property string|null $avatar
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $activation_token
  * @property string|null $register_ip
  * @property int $active
  * @property string|null $remember_token
+ * @property string|null $settings
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $stripe_id
@@ -63,8 +68,12 @@ namespace App\Models{
  * @property string|null $trial_ends_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Client> $clients
  * @property-read int|null $clients_count
+ * @property mixed $locale
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read \TCG\Voyager\Models\Role|null $role
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \TCG\Voyager\Models\Role> $roles
+ * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Cashier\Subscription> $subscriptions
  * @property-read int|null $subscriptions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
@@ -77,6 +86,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActivationToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
@@ -88,6 +98,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePmType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRegisterIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRoleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSettings($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereStripeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTrialEndsAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
@@ -99,7 +111,6 @@ namespace App\Models{
 /**
  * App\Models\cart
  *
- * @method static \Database\Factories\cartFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|cart newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|cart newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|cart query()
@@ -147,28 +158,24 @@ namespace App\Models{
  * App\Models\settings
  *
  * @property int $id
- * @property string $description
- * @property string $short_des
- * @property string $logo
- * @property string $photo
- * @property string $address
- * @property string $phone
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $key
+ * @property string $display_name
+ * @property string|null $value
+ * @property string|null $details
+ * @property string $type
+ * @property int $order
+ * @property string|null $group
  * @method static \Illuminate\Database\Eloquent\Builder|settings newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|settings newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|settings query()
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereDetails($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereDisplayName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereGroup($value)
  * @method static \Illuminate\Database\Eloquent\Builder|settings whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereLogo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereShortDes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|settings whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings whereValue($value)
  */
 	class settings extends \Eloquent {}
 }
