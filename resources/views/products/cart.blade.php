@@ -73,6 +73,8 @@
          <!-- Your cart items -->
         <td>
             <div class="qty-box">
+                <form action="{{ route('cart.add') }}" method="POST">
+                    @csrf
                 <div class="input-group">
                     <input type="number" name="quantity" data-rowid="{{ $id }}"
                        class="form-control quantity cart-update " value="{{ $quantity}}">

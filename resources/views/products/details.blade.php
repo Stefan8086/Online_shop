@@ -26,10 +26,10 @@
 <section>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-sm-1">
+        <div class="col-md-6 col-sm-12">
             <img src="{{ asset('assets/image/15.jpg')}}" class="img-fluid" alt="" >
         </div>
-        <div class="col-md-6 col-sm-1">
+        <div class="col-md-6 col-sm-12">
             <div class="cloth-details-size">
                 <div class="product-count">
                     <ul>
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="details-image-concept">
-                    <h2>Different PHP training</h2>
+                    <h2>{{ $product->name }}</h2>
                 </div>
 
                 <div class="label-section">
@@ -61,25 +61,24 @@
                     <p><strong>Price: </strong> {{ $product->price }}€</p>
                 </h3>
                 <div class= "product-buttons">
-                    <form method="POST" action="{{ route('cart.add') }}">
+                    <form method="POST" action="{{ route('cart.add', ["product" => $product->id]) }}">
                         @csrf
-                    <p class="btn-holder">
                         <input type="hidden" value="{{ $product->id }}" name="id">
                         <input type="hidden" value="{{ $product->name }}" name="name">
                         <input type="hidden" value="{{ $product->price }}" name="price">
                         <input type="hidden" value="{{ $product->image }}"  name="image">
                         <input type="hidden" value="1" name="quantity">
-                        <button type="submit" class="btn btn-warning btn-block text-center" onclick="addToCart(1)">
+                        <button type="submit" class="btn btn-warning btn-block text-center" onclick="addToCart({{ $product->id }})">
                         <i class="bi bi-cart3"></i>
                         <span>Add To Cart</span>
                         </button>
-                       </p>
                     </form>
                     </div>
+                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+       </div>
+    @push('script')
 <script>
     function addToCart(productId) {
        // document.getElementById('addtocart').submit();
@@ -111,6 +110,7 @@
             form.submit();
     }
 </script>
+@endpush
 </section>
 
 @endsection
