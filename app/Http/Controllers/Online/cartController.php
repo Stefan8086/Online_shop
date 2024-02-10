@@ -29,7 +29,8 @@ class cartController extends Controller
             "name" => $product->name,
             "quantity" => 1,
             "price" => $product->price,
-            "image" => $product->image
+            //TO DO
+            "image" => asset('assets/image/1.png')
         ];
     }
 
@@ -57,6 +58,7 @@ class cartController extends Controller
         }
         session()->flash('success', 'Product removed successfully');
     }
+    return redirect()->back();
   }
 
   public function clearAllCart()
@@ -68,6 +70,8 @@ class cartController extends Controller
       return redirect()->route('cart');
   }
 }
+
+
 
 
 

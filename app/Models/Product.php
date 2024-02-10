@@ -27,5 +27,4 @@ class Product extends Model
         'discount',
     ];
 
-
 }
