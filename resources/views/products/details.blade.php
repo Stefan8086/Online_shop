@@ -61,7 +61,7 @@
                     <p><strong>Price: </strong> {{ $product->price }}€</p>
                 </h3>
                 <div class= "product-buttons">
-                    <form method="POST" action="{{ route('cart.add', ["product" => $product->id]) }}">
+                    <form method="POST" action="{{ route('cart.add', ["id" => $product->id]) }}">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
                         <input type="hidden" value="{{ $product->name }}" name="name">

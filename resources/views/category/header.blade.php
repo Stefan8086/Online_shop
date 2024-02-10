@@ -16,21 +16,24 @@
      <meta name="description" content="Surfside Media">
      <meta name="keywords" content="Surfside Media">
      <meta name="author" content="Surfside Media">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
           <link rel="stylesheet" href="{{ asset('assets/style/service.css') }}">
+          <link rel="stylesheet" href="{{ asset('assets/style/checkout.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/bootstrap.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/register.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/order.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/details.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/demo4.css') }}">
           <link rel="stylesheet" href="{{ asset('assets/style/header.css') }}">
+          
 
 
           <link rel="dns-prefetch" href="//fonts.bunny.net">
           <link rel="preconnect" href="https://fonts.gstatic.com">
-          <link rel="manifest" href="manifest.json">
+
           <link rel="apple-touch-icon" href="">
 
           <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -40,7 +43,10 @@
           <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                <title>Online_shop - @yield('title')</title>
             </head>
-            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/style/cart.css') }}" rel="stylesheet">
+
+            @stack('scripts')
+
                <!-- Scripts -->
  @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 

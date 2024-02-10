@@ -73,10 +73,10 @@
          <!-- Your cart items -->
         <td>
             <div class="qty-box">
-                <form action="{{ route('cart.add') }}" method="POST">
-                    @csrf
+
+
                 <div class="input-group">
-                    <input type="number" name="quantity" data-rowid="{{ $id }}"
+                    <input type="number" name="quantity" id="cart-update" data-rowid="{{ $id }}"
                        class="form-control quantity cart-update " value="{{ $quantity}}">
                  </div>
              </div>
@@ -94,6 +94,7 @@
          </td>
       </tr>
    </tbody>
+   @endforeach
 </table>
   </div>
     <div class="col-12 mt-md-5 mt-4">
@@ -109,7 +110,7 @@
         <div class="col-sm-5 col-7">
             <div class="left-side-button float-start">
                 <a href="{{ route('product') }}" class="btn btn-solid-default btn fw-bold mb-0 ms-0">
-                    <i class="bi bi-arrow-left"></i> Continue Product</a>
+                    <i class="bi bi-arrow-left"></i> Check Out</a>
             </div>
         </div>
     </div>
@@ -124,8 +125,6 @@
         </div>
         <div class="col-lg-4 col-sm-6 ">
             <div class="checkout-button">
-                <a href="checkout" class="btn btn-solid-default btn fw-bold">
-                    Check Out <i class="bi bi-arrow-right"></i></a>
             </div>
         </div>
         <div class="col-lg-4">
@@ -137,7 +136,7 @@
                             <h6>Total <span>€{{ $total }}</span></h6>
                         </div>
                         <div class="bottom-details">
-                            <a href="checkout">Process Checkout</a>
+                            <a class="btn btn-checkout" href="{{ url('checkout') }}" wire:click.prevent="checkout">Process Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -146,20 +145,20 @@
     </div>
 </div>
 </div>
-@endforeach
 @endif
 
 </div>
 </section>
-@endsection
 
 
 
-@push('script')
+
+@push('scripts')
 <script type="text/javascript">
+ $(document).ready(function(e) {
 
-    $(".cart-update").change(function (e) {
-        e.preventDefault();
+    $("input[id=cart-update]").on('change input',function () {
+        //e.preventDefault();
 
         var ele = $(this);
 
@@ -196,7 +195,7 @@
             });
         }
     });
-
+ });
 </script>
 @endpush
-
+@endsection
